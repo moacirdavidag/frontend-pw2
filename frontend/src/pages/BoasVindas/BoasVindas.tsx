@@ -5,7 +5,7 @@ export const BoasVindas = () => {
   return (
     <>
       <div>BoasVindas</div>
-      <Button />
+      <Button titulo="Primeiro botão" />
     </>
   );
 };

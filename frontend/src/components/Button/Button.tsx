@@ -1,6 +1,10 @@
 import React from "react";
+import { BotaoComponent } from "./style";
 
-export const Button = () => {
-    return(<>
-    </>)
-}
+type Props = {
+  titulo: string;
+};
+
+export const Button = ({ titulo }: Props) => {
+  return <BotaoComponent>{titulo}</BotaoComponent>;
+};
