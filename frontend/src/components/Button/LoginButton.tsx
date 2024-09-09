@@ -2,10 +2,15 @@ import React from "react";
 import { Button, ButtonProps } from "@chakra-ui/react";
 import { MdArrowOutward } from "react-icons/md";
 
-const LoginButton: React.FC<ButtonProps> = (props) => {
+interface LoginButtonProps extends ButtonProps {
+  onClick: () => void; // Prop para o evento de clique
+}
+
+const LoginButton: React.FC<LoginButtonProps> = ({ onClick, ...props }) => {
   return (
     <Button
       {...props}
+      onClick={onClick} // Passa o evento de clique
       bg="#e52d2d"
       color="white"
       borderRadius="40px"
