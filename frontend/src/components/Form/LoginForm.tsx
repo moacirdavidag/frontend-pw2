@@ -11,10 +11,12 @@ import {
   Image,
 } from "@chakra-ui/react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
+import { useNavigate } from "react-router-dom"; // Importar o useNavigate
 import EnterButton from "../Button/EnterButton";
 
 const LoginForm: React.FC = () => {
   const [showPassword, setShowPassword] = React.useState(false);
+  const navigate = useNavigate(); // Hook para navegar
 
   const handleShowClick = () => setShowPassword(!showPassword);
 
@@ -36,7 +38,7 @@ const LoginForm: React.FC = () => {
       <Image
         src="src/assets/imgs/logo.png"
         alt="Logo Delivery Acadêmico"
-        width="156px" // Ajuste o tamanho conforme necessário
+        width="156px"
         height="50px"
         mb="4"
       />
@@ -45,7 +47,7 @@ const LoginForm: React.FC = () => {
       <Image
         src="src/assets/imgs/motoca.png"
         alt="Delivery Acadêmico"
-        width="340px" // Ajuste o tamanho conforme necessário
+        width="340px"
         height="auto"
         mb="6"
       />
@@ -92,7 +94,13 @@ const LoginForm: React.FC = () => {
 
         {/* Link Esqueci minha senha */}
         <Box textAlign="left" mb="2">
-          <Text fontSize="14px" fontWeight="semibold" color="gray.600">
+          <Text
+            fontSize="14px"
+            fontWeight="semibold"
+            color="gray.600"
+            cursor="pointer"
+            onClick={() => navigate("/forgot-password")} // Redireciona ao clicar
+          >
             Esqueci minha senha
           </Text>
         </Box>

@@ -1,13 +1,9 @@
 import React from "react";
 import { ChakraProvider, Box } from "@chakra-ui/react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  useNavigate,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import BoasVindas from "./pages/BoasVindas/BoasVindas";
 import LoginScreen from "./pages/BoasVindas/LoginScreen";
+import ForgotPasswordScreen from "./pages/ForgotPasswordScreen";
 
 // Componente de Boas-Vindas
 const WelcomeScreen: React.FC = () => {
@@ -24,9 +20,9 @@ function App() {
     <ChakraProvider>
       <Router>
         <Routes>
-          <Route path="/" element={<WelcomeScreen />} /> {/* Página inicial */}
+          <Route path="/" element={<WelcomeScreen />} />
           <Route path="/login" element={<LoginScreen />} />{" "}
-          {/* Página de Login */}
+          <Route path="/forgot-password" element={<ForgotPasswordScreen />} />
         </Routes>
       </Router>
     </ChakraProvider>
