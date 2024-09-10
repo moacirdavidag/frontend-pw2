@@ -10,7 +10,7 @@ const WelcomeScreen = () => {
   const handleLoginClick = () => {
     navigate("/login");
   };
-
+  
   return (
     <Box
       display="flex"
@@ -22,7 +22,7 @@ const WelcomeScreen = () => {
       <VStack spacing={8} maxW="400px" textAlign="center">
         {/* Logo da empresa */}
         <Image
-          src="src/assets/imgs/logo.png"
+          src="src\assets\imgs\logo.png"
           alt="Logo Delivery Acadêmico"
           mt="10px"
           width="156px"
@@ -31,7 +31,7 @@ const WelcomeScreen = () => {
 
         {/* Imagem de Boas Vindas */}
         <Image
-          src="src/assets/imgs/motoca.png"
+          src="src\assets\imgs\motoca.png"
           alt="Delivery Acadêmico"
           width="380px"
           height="280px"
@@ -39,7 +39,7 @@ const WelcomeScreen = () => {
 
         {/* Texto de Boas Vindas */}
         <Heading as="h1" fontSize="24px">
-          Bem-vindo ao Delivery Acadêmico
+          Bem vindo ao Delivery Acadêmico
         </Heading>
         <Text fontSize="16px" color="gray.600">
           Descubra uma variedade de pratos com entrega rápida.
@@ -47,7 +47,6 @@ const WelcomeScreen = () => {
 
         {/* Botão Fazer Login */}
         <LoginButton onClick={handleLoginClick} />
-
         {/* Botão Cadastre-se */}
         <RegisterButton />
       </VStack>
