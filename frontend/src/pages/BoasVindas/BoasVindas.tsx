@@ -2,6 +2,8 @@ import { Box, VStack, Heading, Text, Image } from "@chakra-ui/react";
 import LoginButton from "../../components/Button/LoginButton";
 import RegisterButton from "../../components/Button/RegisterButton";
 import { useNavigate } from "react-router-dom";
+import ButtonComponent from "../../components/Button/Button";
+import { MdArrowOutward } from "react-icons/md";
 
 const WelcomeScreen = () => {
   const navigate = useNavigate(); // Hook para navegação
@@ -46,10 +48,23 @@ const WelcomeScreen = () => {
         </Text>
 
         {/* Botão Fazer Login */}
-        <LoginButton onClick={handleLoginClick} />
+        {/* <LoginButton onClick={handleLoginClick} /> */}
+        <ButtonComponent
+          titulo="Fazer login"
+          background={"#e52d2d"}
+          onClick={handleLoginClick}
+          variant={"contained"}
+          icon={<MdArrowOutward />}
+        />
 
         {/* Botão Cadastre-se */}
-        <RegisterButton />
+        <ButtonComponent
+          titulo="Cadastre-se"
+          variant={"outline"}
+          onClick={() => {}}
+          color={"#e52d2d"}
+          hover={{background: "green"}}
+        />
       </VStack>
     </Box>
   );
