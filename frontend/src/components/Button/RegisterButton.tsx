@@ -19,7 +19,7 @@ const RegisterButton: React.FC<ButtonProps> = (props) => {
       _hover={{
         borderColor: "#d02626", // Cor da borda no hover
         color: "#d02626", // Cor do texto no hover
-        backgroundColor: "transparent", // Manter fundo transparente no hover
+        backgroundColor: "#D3D3D3", // Manter fundo transparente no hover
       }}
       mb={10} // Margem inferior
     >
