@@ -3,7 +3,7 @@ import { ChakraProvider, Box } from "@chakra-ui/react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import BoasVindas from "./pages/BoasVindas/BoasVindas";
 import LoginScreen from "./pages/Login/LoginScreen";
-import ForgotPasswordScreen from "./pages/ForgotPasswordScreen";
+import ForgotPasswordScreen from "./pages/ForgotPassword/ForgotPasswordScreen";
 
 // Componente de Boas-Vindas
 const WelcomeScreen: React.FC = () => {
