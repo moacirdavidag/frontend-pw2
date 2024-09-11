@@ -31,9 +31,9 @@ const LoginForm: React.FC = () => {
       <Illustration
         src="src/assets/imgs/motoca.png"
         alt="Imagem de Boas Vindas - Motoca"
-        width="340px"
+        width="300px"
         height="auto"
-        mb="6"
+        mb="4"
       />
 
       <Stack spacing="4" width="full">
