@@ -1,22 +1,36 @@
-import { Button } from "@chakra-ui/react";
+import React from "react";
+import { Button, ButtonProps, Spinner } from "@chakra-ui/react";
 
-interface ActionButtonProps {
-  text: string;
-  onClick?: () => void;
+interface ActionButtonProps extends ButtonProps {
+  label: string;
+  isLoading?: boolean;
+  icon?: React.ReactElement; // Ícone opcional
 }
 
 export const ActionButton: React.FC<ActionButtonProps> = ({
-  text,
-  onClick,
+  label,
+  isLoading = false,
+  icon,
+  ...rest
 }) => {
   return (
     <Button
-      onClick={onClick}
-      colorScheme="red"
+      width="full"
       borderRadius="40px"
-      width="100%"
+      bg="red.500"
+      color="white"
+      _hover={{ bg: "red.600" }}
+      {...rest}
     >
-      {text}
+      {isLoading ? (
+        <Spinner size="sm" color="white" />
+      ) : (
+        <>
+          {icon && React.cloneElement(icon, { style: { marginRight: "8px" } })}{" "}
+          {/* Renderiza o ícone se ele existir com margem à direita */}
+          {label} {/* Renderiza o texto */}
+        </>
+      )}
     </Button>
   );
 };
