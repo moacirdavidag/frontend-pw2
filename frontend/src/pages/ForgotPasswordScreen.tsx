@@ -8,19 +8,21 @@ import { ActionButton } from "../components/Button/ActionButton";
 const ForgotPasswordScreen: React.FC = () => {
   return (
     <PageLayout>
-      <Header logoSrc="src/assets/imgs/logo.png" title="Delivery Acadêmico" />
+      {/* Ajustar Header para não exibir título */}
+      <Header logoSrc="src/assets/imgs/logo.png" />
 
       <Illustration src="src/assets/imgs/motoca.png" alt="Motoca" />
 
-      <InputField
-        label="Insira seu email"
-        placeholder="Email"
-        type="email"
-        subtext="Para redefinir sua senha digite o email abaixo:"
-      />
+      <div>
+        {/* Texto e subtexto antes do campo de formulário */}
+        <p>Insira seu email</p>
+        <p>Para redefinir sua senha digite o email abaixo:</p>
+
+        <InputField id="email" placeholder="Email" type="email" />
+      </div>
 
       <ActionButton
-        text="Redefinir senha"
+        label="Redefinir senha"
         onClick={() => console.log("Redefinir senha")}
       />
     </PageLayout>

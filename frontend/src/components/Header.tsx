@@ -1,14 +1,13 @@
-import { Image } from "@chakra-ui/react";
+import { Image, VStack } from "@chakra-ui/react";
 
 interface HeaderProps {
   logoSrc: string;
-  title: string;
 }
 
-export const Header: React.FC<HeaderProps> = ({ logoSrc, title }) => {
+export const Header: React.FC<HeaderProps> = ({ logoSrc }) => {
   return (
-    <>
-      <Image src={logoSrc} alt={title} width="150px" mb="4" />
-    </>
+    <VStack spacing={4} mb={6} align="center">
+      <Image src={logoSrc} alt="Logo" width="150px" />
+    </VStack>
   );
 };
