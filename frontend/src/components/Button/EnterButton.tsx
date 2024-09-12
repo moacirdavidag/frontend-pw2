@@ -13,7 +13,7 @@ const EnterButton: React.FC<ButtonProps> = (props) => {
       fontSize="16px"
       fontWeight="bold"
       width="100%"
-      leftIcon={<MdLogin />} // Ícone antes do texto
+      leftIcon={<MdLogin />}
       _hover={{ bg: "#d02626" }}
     >
       Entrar

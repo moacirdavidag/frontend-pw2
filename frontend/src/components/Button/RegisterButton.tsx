@@ -17,11 +17,11 @@ const RegisterButton: React.FC<ButtonProps> = (props) => {
       justifyContent="center"
       transition="background-color 0.3s ease, color 0.3s ease"
       _hover={{
-        borderColor: "#d02626", // Cor da borda no hover
-        color: "#d02626", // Cor do texto no hover
-        backgroundColor: "#D3D3D3", // Manter fundo transparente no hover
+        borderColor: "#d02626",
+        color: "#d02626",
+        backgroundColor: "#D3D3D3",
       }}
-      mb={10} // Margem inferior
+      mb={10}
     >
       Cadastre-se
     </Button>

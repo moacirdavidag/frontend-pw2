@@ -4,9 +4,8 @@ import RegisterButton from "../../components/Button/RegisterButton";
 import { useNavigate } from "react-router-dom";
 
 const WelcomeScreen = () => {
-  const navigate = useNavigate(); // Hook para navegação
+  const navigate = useNavigate();
 
-  // Função para navegar para a tela de login
   const handleLoginClick = () => {
     navigate("/login");
   };
