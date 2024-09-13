@@ -12,9 +12,9 @@ interface IllustrationProps {
 export const Illustration: React.FC<IllustrationProps> = ({
   src,
   alt,
-  width = "100%", // Valores padrão para largura e altura
+  width = "300px",
   height = "auto",
-  mb = "4", // Margem inferior padrão
+  mb = "4",
 }) => {
   return <Image src={src} alt={alt} width={width} height={height} mb={mb} />;
 };
