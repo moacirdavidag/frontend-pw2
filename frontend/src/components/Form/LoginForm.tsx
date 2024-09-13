@@ -8,13 +8,12 @@ import {
 } from "@chakra-ui/react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
-
-import { Header } from "../Header";
-import { InputField } from "../InputField";
-import { PageLayout } from "../PageLayout";
-import { Illustration } from "../Illustration"; // Importação do componente Illustration
-import { ActionButton } from "../Button/ActionButton";
+import { Header } from "../Header/Header";
+import { InputField } from "../InputField/InputField";
+import { PageLayout } from "../PageLayout/PageLayout";
+import { Illustration } from "../illustration/Illustration"; // Importação do componente Illustration
 import { MdLogin } from "react-icons/md";
+import ActionButton from "../Button/ActionButton";
 
 const LoginForm: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -24,15 +23,11 @@ const LoginForm: React.FC = () => {
 
   return (
     <PageLayout>
-      {/* Header com o título e logo */}
       <Header logoSrc="src/assets/imgs/logo.png" />
 
-      {/* Componente de Ilustração Dinâmico */}
       <Illustration
         src="src/assets/imgs/motoca.png"
         alt="Imagem de Boas Vindas - Motoca"
-        width="300px"
-        height="auto"
         mb="4"
       />
 
@@ -84,9 +79,11 @@ const LoginForm: React.FC = () => {
 
         {/* Botão Entrar */}
         <ActionButton
-          label="Entrar"
-          leftIcon={<MdLogin />}
-          onClick={() => {}}
+          titulo="Entrar"
+          icon={<MdLogin />}
+          onClick={() => navigate("/home")} // Daqui deve renderizar para Home que vai ser desenvolvida
+          background="red.500"
+          color="white"
         />
       </Stack>
     </PageLayout>

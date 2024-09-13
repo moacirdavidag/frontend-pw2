@@ -1,11 +1,11 @@
 import React from "react";
-import { PageLayout } from "../../components/PageLayout";
-import { Header } from "../../components/Header";
-import { Illustration } from "../../components/Illustration";
-import LoginButton from "../../components/Button/LoginButton";
-import RegisterButton from "../../components/Button/RegisterButton";
+import { PageLayout } from "../../components/PageLayout/PageLayout";
+import { Header } from "../../components/Header/Header";
+import { Illustration } from "../../components/illustration/Illustration";
 import { useNavigate } from "react-router-dom";
-import { Heading, Text, Box, VStack, Image } from "@chakra-ui/react";
+import { Heading, Text } from "@chakra-ui/react";
+import ActionButton from "../../components/Button/ActionButton";
+import { MdArrowOutward } from "react-icons/md";
 
 const WelcomeScreen: React.FC = () => {
   const navigate = useNavigate();
@@ -16,38 +16,44 @@ const WelcomeScreen: React.FC = () => {
 
   return (
     <PageLayout>
-      <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        height="100vh"
-        p={4}
-      >
-        <VStack spacing={8} maxW="400px" textAlign="center">
-          {/* Logo da empresa */}
+      <Header logoSrc="src/assets/imgs/logo.png" />
 
-          {/* Imagem de Boas Vindas */}
-          <Image
-            src="src\assets\imgs\motoca.png"
-            alt="Delivery Acadêmico"
-            width="380px"
-            height="280px"
-          />
+      <Illustration src="src/assets/imgs/motoca.png" alt="Delivery Acadêmico" />
 
-          {/* Texto de Boas Vindas */}
-          <Heading as="h1" fontSize="24px">
-            Bem vindo ao Delivery Acadêmico
-          </Heading>
-          <Text fontSize="16px" color="gray.600">
-            Descubra uma variedade de pratos com entrega rápida.
-          </Text>
-        </VStack>
-      </Box>
-      <Box display="flex" flexDirection="column" alignItems="center" gap={4}>
-        <LoginButton onClick={handleLoginClick} />
-        {/* Botão Cadastre-se */}
-        <RegisterButton />
-      </Box>
+      <Heading as="h1" fontSize="24px" mb={4}>
+        Bem-vindo ao Delivery Acadêmico
+      </Heading>
+      <Text fontSize="16px" color="gray.600" mb={8}>
+        Descubra uma variedade de pratos com entrega rápida.
+      </Text>
+
+      <ActionButton
+        titulo="Entrar"
+        icon={<MdArrowOutward />}
+        onClick={() => handleLoginClick()}
+        background="red.500"
+        color="white"
+        width="100%"
+        mb={4}
+      />
+      <ActionButton
+        titulo="Cadastre-se"
+        variant="outline"
+        borderColor="#e52d2d"
+        color="#e52d2d"
+        width="100%"
+        background="transparent"
+        hover={{
+          borderColor: "#d02626",
+          color: "#d02626",
+          backgroundColor: "#D3D3D3",
+        }}
+        borderRadius="40px"
+        p="24px 156px"
+        fontSize="16px"
+        fontWeight="bold"
+        onClick={() => navigate("/register")} // Função para navegação
+      />
     </PageLayout>
   );
 };

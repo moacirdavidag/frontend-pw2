@@ -5,7 +5,7 @@ interface InputFieldProps extends InputProps {
   id: string;
   isRequired?: boolean;
   InputRightElement?: React.ReactNode;
-  borderRadius?: string; // Adiciona a propriedade borderRadius
+  borderRadius?: string;
 }
 
 export const InputField: React.FC<InputFieldProps> = ({
