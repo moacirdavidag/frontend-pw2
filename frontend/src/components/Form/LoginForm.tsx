@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { Header } from "../Header/Header";
 import { InputField } from "../InputField/InputField";
 import { PageLayout } from "../PageLayout/PageLayout";
-import { Illustration } from "../illustration/Illustration"; // Importação do componente Illustration
+import { Illustration } from "../illustration/Illustration";
 import { MdLogin } from "react-icons/md";
 import ActionButton from "../Button/ActionButton";
 
