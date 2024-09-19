@@ -32,8 +32,8 @@ const ActionButton: React.FC<ButtonProps & Props> = (props) => {
       alignItems="center"
       justifyContent="center"
       transition="background-color 0.3s ease"
-      leftIcon={props.icon ? <>{props.icon}</> : undefined} // Ícone opcional
-      _hover={props.hover ?? { bg: "red.600" }} // Hover padrão, se não for fornecido
+      leftIcon={props.icon ? <>{props.icon}</> : undefined}
+      _hover={props.hover ?? { bg: "red.600" }}
     >
       {props.isLoading ? (
         <Spinner size="sm" color={props.color ?? "white"} />

@@ -1,15 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { PageLayout } from "../../components/PageLayout/PageLayout";
 import { Header } from "../../components/Header/Header";
 import { Illustration } from "../../components/illustration/Illustration";
 import { InputField } from "../../components/InputField/InputField";
 import TitleWithSubtitle from "../../components/TitleWithSubtitle/TittleWithSub";
 import ActionButton from "../../components/Button/ActionButton";
+import ModalReset from "../../components/ModalReset/ModalResetPassword";
 
 const ForgotPasswordScreen: React.FC = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <PageLayout>
-      {/* Ajustar Header para não exibir título */}
       <Header logoSrc="src/assets/imgs/logo.png" />
 
       <Illustration src="src/assets/imgs/motoca.png" alt="Motoca" />
@@ -27,11 +37,9 @@ const ForgotPasswordScreen: React.FC = () => {
         focusBorderColor="red.500"
       />
 
-      <ActionButton
-        titulo="Redefinir senha"
-        onClick={() => console.log("Redefinir senha")}
-        mt={4}
-      />
+      <ActionButton titulo="Redefinir senha" onClick={handleOpenModal} mt={4} />
+
+      <ModalReset isOpen={isModalOpen} onClose={handleCloseModal} />
     </PageLayout>
   );
 };
