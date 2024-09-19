@@ -1,10 +1,10 @@
 import React from "react";
-import { PageLayout } from "../../components/PageLayout";
-import { Header } from "../../components/Header";
-import { Illustration } from "../../components/Illustration";
-import { InputField } from "../../components/InputField";
-import { ActionButton } from "../../components/Button/ActionButton";
-import TitleWithSubtitle from "../../components/TittleWithSub";
+import { PageLayout } from "../../components/PageLayout/PageLayout";
+import { Header } from "../../components/Header/Header";
+import { Illustration } from "../../components/illustration/Illustration";
+import { InputField } from "../../components/InputField/InputField";
+import TitleWithSubtitle from "../../components/TitleWithSubtitle/TittleWithSub";
+import ActionButton from "../../components/Button/ActionButton";
 
 const ForgotPasswordScreen: React.FC = () => {
   return (
@@ -24,10 +24,11 @@ const ForgotPasswordScreen: React.FC = () => {
         placeholder="Email"
         type="email"
         borderRadius="40px"
+        focusBorderColor="red.500"
       />
 
       <ActionButton
-        label="Redefinir senha"
+        titulo="Redefinir senha"
         onClick={() => console.log("Redefinir senha")}
         mt={4}
       />

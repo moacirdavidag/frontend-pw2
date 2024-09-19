@@ -1,36 +1,47 @@
 import React from "react";
-import { Button, ButtonProps, Spinner } from "@chakra-ui/react";
+import {
+  Button,
+  ButtonProps,
+  Spinner,
+  SystemStyleObject,
+} from "@chakra-ui/react";
 
-interface ActionButtonProps extends ButtonProps {
-  label: string;
-  isLoading?: boolean;
+type Props = {
+  titulo: string; // Título do botão
+  onClick: Function; // Função de clique
+  background?: string; // Cor de fundo opcional
+  color?: string; // Cor do texto opcional
+  variant?: string; // Variante do botão (opcional)
   icon?: React.ReactElement; // Ícone opcional
-}
+  hover?: SystemStyleObject; // Estilo de hover opcional
+  isLoading?: boolean; // Estado de loading opcional
+};
 
-export const ActionButton: React.FC<ActionButtonProps> = ({
-  label,
-  isLoading = false,
-  icon,
-  ...rest
-}) => {
+const ActionButton: React.FC<ButtonProps & Props> = (props) => {
   return (
     <Button
-      width="full"
+      {...props}
+      bg={props.background ?? "red.500"}
+      color={props.color ?? "white"}
       borderRadius="40px"
-      bg="red.500"
-      color="white"
-      _hover={{ bg: "red.600" }}
-      {...rest}
+      p="16px 24px"
+      fontSize="16px"
+      fontWeight="bold"
+      width="100%"
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+      transition="background-color 0.3s ease"
+      leftIcon={props.icon ? <>{props.icon}</> : undefined} // Ícone opcional
+      _hover={props.hover ?? { bg: "red.600" }} // Hover padrão, se não for fornecido
     >
-      {isLoading ? (
-        <Spinner size="sm" color="white" />
+      {props.isLoading ? (
+        <Spinner size="sm" color={props.color ?? "white"} />
       ) : (
-        <>
-          {icon && React.cloneElement(icon, { style: { marginRight: "8px" } })}{" "}
-          {/* Renderiza o ícone se ele existir com margem à direita */}
-          {label} {/* Renderiza o texto */}
-        </>
+        props.titulo
       )}
     </Button>
   );
 };
+
+export default ActionButton;
