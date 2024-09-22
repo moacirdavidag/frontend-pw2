@@ -1,7 +1,6 @@
 import React from 'react'
 import { HeaderWrapper } from './style'
-import { Avatar, Stack, Typography } from '@mui/material'
-import { Icon, Text } from '@chakra-ui/react'
+import { Avatar, Icon, Stack, Text } from '@chakra-ui/react'
 import { PiPlaceholder } from 'react-icons/pi'
 
 const Header : React.FC = () => {
