@@ -6,6 +6,7 @@ import LoginScreen from "./pages/Login/LoginScreen";
 import ForgotPasswordScreen from "./pages/ForgotPassword/ForgotPasswordScreen";
 import RegisterScreen from "./pages/Register/RegisterScreen";
 import Sobre from "./pages/Sobre/SobreScreen";
+import Contato from "./pages/Contato/ContatoScreen";
 
 
 // Componente de Boas-Vindas
@@ -28,6 +29,7 @@ function App() {
           <Route path="/forgot-password" element={<ForgotPasswordScreen />} />
           <Route path="/register" element={<RegisterScreen />} />
           <Route path="/Sobre" element={<Sobre/>} /> 
+          <Route path="/Contato" element={<Contato/>} /> 
         </Routes>
       </Router>
     </ChakraProvider>
