@@ -52,7 +52,7 @@ const LoginForm: React.FC = () => {
           aria-label="Senha"
           focusBorderColor="red.500"
           borderRadius="40px"
-          InputRightElement={
+          inputRightElement={
             <InputRightElement width="3rem">
               <IconButton
                 variant="ghost"

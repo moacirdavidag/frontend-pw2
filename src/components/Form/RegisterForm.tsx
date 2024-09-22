@@ -12,6 +12,7 @@ import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import ActionButton from "../Button/ActionButton";
 import TitleWithSubtitle from "../TitleWithSubtitle/TittleWithSub";
 import { InputField } from "../InputField/InputField";
+import { Header } from "../Header/Header";
 
 const RegisterForm: React.FC = () => {
   const [tabIndex, setTabIndex] = useState(0);
@@ -26,9 +27,10 @@ const RegisterForm: React.FC = () => {
   };
 
   return (
-    <Box>
+    <Box mt={2} mb={0}>
+      <Header logoSrc="src/assets/imgs/logo.png" />
       {/* Título e subtítulo */}
-      <Box textAlign="left" mb={2}>
+      <Box textAlign="left" mb={1}>
         <TitleWithSubtitle
           title="Cadastre-se"
           subtitle="Siga o passo a passo para fazer o cadastro."
@@ -131,7 +133,7 @@ const RegisterForm: React.FC = () => {
                   marginRight="0"
                 />
               }
-              mb={4}
+              mb={6}
             />
             <ActionButton
               titulo="Próximo"
@@ -147,52 +149,52 @@ const RegisterForm: React.FC = () => {
               placeholder="Rua"
               focusBorderColor="red.500"
               borderRadius="40px"
-              mb={4}
+              mb={3}
             />
             <InputField
               id="bairro"
               placeholder="Bairro"
               focusBorderColor="red.500"
               borderRadius="40px"
-              mb={4}
+              mb={3}
             />
             <InputField
               id="numero"
               placeholder="Número"
               focusBorderColor="red.500"
               borderRadius="40px"
-              mb={4}
+              mb={3}
             />
             <InputField
               id="complemento"
               placeholder="Complemento"
               focusBorderColor="red.500"
               borderRadius="40px"
-              mb={4}
+              mb={3}
             />
             <InputField
               id="cidade"
               placeholder="Cidade"
               focusBorderColor="red.500"
               borderRadius="40px"
-              mb={4}
+              mb={3}
             />
             <InputField
               id="estado"
               placeholder="Estado"
               focusBorderColor="red.500"
               borderRadius="40px"
-              mb={4}
+              mb={3}
             />
             <InputField
               id="referencia"
               placeholder="Ponto de Referência"
               focusBorderColor="red.500"
               borderRadius="40px"
-              mb={4}
+              mb={6}
             />
 
-            <Box display="flex" justifyContent="space-between" mt={2} gap={4}>
+            <Box display="flex" justifyContent="space-between" gap={4}>
               <ActionButton
                 titulo="Voltar"
                 onClick={() => setTabIndex(0)} // Voltar ao formulário anterior
