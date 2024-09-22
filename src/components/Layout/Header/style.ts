@@ -7,7 +7,9 @@ export const HeaderWrapper = styled.header`
   background-color: ${theme.colors.primary};
   min-height: 20px;
   display: flex;
-  justify-content: "space-evenly";
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
   align-items: center;
   padding: 10px;
   @media screen and (max-width: ${breakpoints.sm}) {
