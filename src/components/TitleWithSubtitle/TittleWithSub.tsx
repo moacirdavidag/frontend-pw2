@@ -4,15 +4,16 @@ import { Box, Text } from "@chakra-ui/react";
 interface TitleWithSubtitleProps {
   title: string;
   subtitle: string;
+  textAlign?: "left" | "center" | "right";
 }
 
 const TitleWithSubtitle: React.FC<TitleWithSubtitleProps> = ({
   title,
   subtitle,
+  textAlign = "center",
 }) => {
   return (
-    <Box textAlign="center" mb={6}>
-      {" "}
+    <Box textAlign={textAlign} mb={6}>
       <Text fontSize="20px" fontWeight="bold" mb={2}>
         {title}
       </Text>

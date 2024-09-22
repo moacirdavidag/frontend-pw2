@@ -1,26 +1,35 @@
 import React from "react";
-import { FormControl, Input, InputGroup, InputProps } from "@chakra-ui/react";
+import {
+  FormControl,
+  Input,
+  InputGroup,
+  InputProps,
+  InputRightElement,
+} from "@chakra-ui/react";
 
 interface InputFieldProps extends InputProps {
   id: string;
   isRequired?: boolean;
-  InputRightElement?: React.ReactNode;
+  inputRightElement?: React.ReactNode;
   borderRadius?: string;
 }
 
 export const InputField: React.FC<InputFieldProps> = ({
   id,
   isRequired = false,
-  InputRightElement,
-  borderRadius = "md", // Define o valor padrão se não for fornecido
+  inputRightElement,
+  borderRadius = "md",
   ...rest
 }) => {
   return (
     <FormControl id={id} isRequired={isRequired}>
       <InputGroup>
-        <Input id={id} borderRadius={borderRadius} {...rest} />{" "}
-        {/* Aplica o borderRadius */}
-        {InputRightElement && <>{InputRightElement}</>}
+        <Input id={id} borderRadius={borderRadius} {...rest} />
+        {inputRightElement && (
+          <InputRightElement width="4rem">
+            {inputRightElement}
+          </InputRightElement>
+        )}
       </InputGroup>
     </FormControl>
   );
