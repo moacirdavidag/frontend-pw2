@@ -7,18 +7,11 @@ import ForgotPasswordScreen from "./pages/ForgotPassword/ForgotPasswordScreen";
 import RegisterScreen from "./pages/Register/RegisterScreen";
 import Sobre from "./pages/Sobre/SobreScreen";
 import Contato from "./pages/Contato/ContatoScreen";
+import WelcomeScreen from "./pages/BoasVindas/BoasVindas";
+import Home from "./pages/Home/Home";
 
 
-// Componente de Boas-Vindas
-const WelcomeScreen: React.FC = () => {
-  return (
-    <Box>
-      <BoasVindas />
-    </Box>
-  );
-};
 
-// Componente principal que define as rotas
 function App() {
   return (
     <ChakraProvider>
@@ -28,8 +21,9 @@ function App() {
           <Route path="/login" element={<LoginScreen />} />
           <Route path="/forgot-password" element={<ForgotPasswordScreen />} />
           <Route path="/register" element={<RegisterScreen />} />
-          <Route path="/Sobre" element={<Sobre/>} /> 
-          <Route path="/Contato" element={<Contato/>} /> 
+          <Route path="/sobre" element={<Sobre/>} /> 
+          <Route path="/contato" element={<Contato/>} /> 
+          <Route path="/home" element={<Home />} />
         </Routes>
       </Router>
     </ChakraProvider>
