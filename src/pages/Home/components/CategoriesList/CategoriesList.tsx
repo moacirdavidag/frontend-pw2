@@ -4,75 +4,87 @@ import Category from "../../../../components/Category/Category";
 import PromotionBanner from "../../../../components/PromotionBanner/PromotionBanner";
 import theme from "../../../../styles/global";
 import CardProduct from "../../../../components/CardProduct/CardProduct";
+import useIsMobile from "../../../../hooks/useIsMobile";
 
 const CATEGORIES = [
   {
     titulo: "Lanches",
     isActive: true,
     imagem: "/img/hamburguer.png",
-    descricao: "Delicioso hambúrguer para toda a família em promoção. É só essa semana!",
-    preco: 24.99
+    descricao:
+      "Delicioso hambúrguer para toda a família em promoção. É só essa semana!",
+    preco: 24.99,
   },
   {
     titulo: "Pizzarias",
     isActive: false,
     imagem: "/img/hamburguer.png",
-    descricao: "Delicioso hambúrguer para toda a família em promoção. É só essa semana!",
-    preco: 24.99
+    descricao:
+      "Delicioso hambúrguer para toda a família em promoção. É só essa semana!",
+    preco: 24.99,
   },
   {
     titulo: "Saladas",
     isActive: false,
     imagem: "/img/hamburguer.png",
-    descricao: "Delicioso hambúrguer para toda a família em promoção. É só essa semana!",
-    preco: 24.99
+    descricao:
+      "Delicioso hambúrguer para toda a família em promoção. É só essa semana!",
+    preco: 24.99,
   },
   {
     titulo: "Saladas",
     isActive: false,
     imagem: "/img/hamburguer.png",
-    descricao: "Delicioso hambúrguer para toda a família em promoção. É só essa semana!",
-    preco: 24.99
+    descricao:
+      "Delicioso hambúrguer para toda a família em promoção. É só essa semana!",
+    preco: 24.99,
   },
   {
     titulo: "Saladas",
     isActive: false,
     imagem: "/img/hamburguer.png",
-    descricao: "Delicioso hambúrguer para toda a família em promoção. É só essa semana!",
-    preco: 24.99
+    descricao:
+      "Delicioso hambúrguer para toda a família em promoção. É só essa semana!",
+    preco: 24.99,
   },
   {
     titulo: "Saladas",
     isActive: false,
     imagem: "/img/hamburguer.png",
-    descricao: "Delicioso hambúrguer para toda a família em promoção. É só essa semana!",
-    preco: 24.99
+    descricao:
+      "Delicioso hambúrguer para toda a família em promoção. É só essa semana!",
+    preco: 24.99,
   },
   {
     titulo: "Saladas",
     isActive: false,
     imagem: "/img/hamburguer.png",
-    descricao: "Delicioso hambúrguer para toda a família em promoção. É só essa semana!",
-    preco: 24.99
+    descricao:
+      "Delicioso hambúrguer para toda a família em promoção. É só essa semana!",
+    preco: 24.99,
   },
 ];
 
 const CategoriesList: React.FC = () => {
+  const isMobile = useIsMobile();
   return (
     <>
-      <Box
-        width={"100vw"}
-        display={"flex"}
-        flexDirection={"column"}
-        justifyContent={"flex-start"}
-        gap={1}
-        my={1}
-        p={5}
-      >
-        <Text as={"p"} fontSize={20} fontWeight={500}>
-          Categorias
-        </Text>
-      </Box>
+      {isMobile && (
+        <Box
+          width={"100vw"}
+          display={"flex"}
+          flexDirection={"column"}
+          justifyContent={"flex-start"}
+          gap={1}
+          my={1}
+          p={5}
+        >
+          <Text as={"p"} fontSize={20} fontWeight={500}>
+            Categorias
+          </Text>
+        </Box>
+      )}
+
       <Stack
         gap={1}
         direction={"row"}
@@ -94,15 +106,18 @@ const CategoriesList: React.FC = () => {
           />
         ))}
       </Stack>
-      <Stack width={"100vw"} my={3} px={5}>
-        <PromotionBanner
-          imagem="/img/pizza.png"
-          textoAltImagem="Imagem de uma Pizza"
-          textoPromocao="Pizzas com 20% de Desconto!"
-          textoSecundario="Oferta por tempo ilimitado, então, aproveite agora!"
-          textoBotao="PEÇA AGORA"
-        />
-      </Stack>
+      {isMobile && (
+        <Stack width={"100vw"} my={3} px={5}>
+          <PromotionBanner
+            imagem="/img/pizza.png"
+            textoAltImagem="Imagem de uma Pizza"
+            textoPromocao="Pizzas com 20% de Desconto!"
+            textoSecundario="Oferta por tempo ilimitado, então, aproveite agora!"
+            textoBotao="PEÇA AGORA"
+          />
+        </Stack>
+      )}
+
       <Stack
         width={"100vw"}
         display={"flex"}
@@ -141,27 +156,30 @@ const CategoriesList: React.FC = () => {
             display: "none",
           },
         }}
+        mb={50}
       >
         {CATEGORIES.map((categoria) => (
           <CardProduct
             titulo={categoria.titulo}
             imagem={categoria.imagem}
             descricao={categoria.descricao}
-            preco={categoria.preco}            
+            preco={categoria.preco}
           />
         ))}
       </Stack>
-      <Stack width={"100vw"} my={3} px={5}>
-        <PromotionBanner
-          imagem="/img/delivery_man.png"
-          textoAltImagem="Imagem de uma Pizza"
-          textoPromocao="Pizzas com 20% de Desconto!"
-          textoSecundario="Oferta por tempo ilimitado, então, aproveite agora!"
-          textoBotao="PEÇA AGORA"
-          backgroundBanner={theme.colors.primary}
-          backgroundBotao={theme.colors.yellow}
-        />
-      </Stack>
+      {isMobile && (
+        <Stack width={"100vw"} my={3} px={5}>
+          <PromotionBanner
+            imagem="/img/delivery_man.png"
+            textoAltImagem="Imagem de uma Pizza"
+            textoPromocao="Pizzas com 20% de Desconto!"
+            textoSecundario="Oferta por tempo ilimitado, então, aproveite agora!"
+            textoBotao="PEÇA AGORA"
+            backgroundBanner={theme.colors.primary}
+            backgroundBotao={theme.colors.yellow}
+          />
+        </Stack>
+      )}
     </>
   );
 };
