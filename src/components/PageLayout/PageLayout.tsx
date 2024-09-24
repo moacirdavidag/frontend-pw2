@@ -9,7 +9,8 @@ interface PageLayoutProps {
 
 const StyledPage = styled(Box)`
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
+  height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -22,7 +23,7 @@ export const PageLayout: React.FC<PageLayoutProps> = ({
 }) => {
   return (
     <StyledPage>
-      <Flex direction="column" align="center" w={"100%"}>
+      <Flex direction="column" align="center" w={"100vw"}>
         {shouldDisplayHeader && <Header />}
         {children}
       </Flex>
