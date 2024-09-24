@@ -1,5 +1,4 @@
 import { Box, Flex } from "@chakra-ui/react";
-import styled from "styled-components";
 import Header from "../Layout/Header/Header";
 
 interface PageLayoutProps {
@@ -7,25 +6,23 @@ interface PageLayoutProps {
   shouldDisplayHeader?: boolean;
 }
 
-const StyledPage = styled(Box)`
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #f7f7f7; /* Cor de fundo da página */
-`;
-
 export const PageLayout: React.FC<PageLayoutProps> = ({
   children,
   shouldDisplayHeader = false,
 }) => {
   return (
-    <StyledPage>
-      <Flex direction="column" align="center" w={"100%"}>
+    <Box
+      w={{ base: "100%", md: "80%", lg: "100%" }}
+      h="100vh"
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      bg="#f7f7f7" /* Cor de fundo da página */
+    >
+      <Flex direction="column" align="center">
         {shouldDisplayHeader && <Header />}
         {children}
       </Flex>
-    </StyledPage>
+    </Box>
   );
 };

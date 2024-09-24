@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { PageLayout } from "../../components/PageLayout/PageLayout";
 import { Header } from "../../components/Header/Header";
 import { Illustration } from "../../components/illustration/Illustration";
 import { InputField } from "../../components/InputField/InputField";
 import TitleWithSubtitle from "../../components/TitleWithSubtitle/TittleWithSub";
 import ActionButton from "../../components/Button/ActionButton";
 import ModalReset from "../../components/ModalReset/ModalResetPassword";
+import { PageLayout } from "../../components/PageLayout/PageLayout";
 
 const ForgotPasswordScreen: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
