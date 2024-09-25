@@ -13,7 +13,7 @@ const Home: React.FC = () => {
     <PageLayout shouldDisplayHeader={true}>
       {!isMobile && (
         <Box
-          width={"100vw"}
+          width={"100%"}
           display={"flex"}
           flexDirection={"row"}
           justifyContent={"space-between"}
@@ -52,7 +52,7 @@ const Home: React.FC = () => {
             width={"100%"}
           >
             <Box
-              width={"100vw"}
+              width={"100%"}
               display={"flex"}
               flexDirection={"column"}
               justifyContent={"flex-start"}

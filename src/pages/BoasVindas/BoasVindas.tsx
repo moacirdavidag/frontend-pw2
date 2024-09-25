@@ -33,7 +33,8 @@ const WelcomeScreen: React.FC = () => {
         onClick={() => handleLoginClick()}
         background="red.500"
         color="white"
-        width="100%"
+        width="auto"
+        display="flex"
         mb={4}
       />
       <ActionButton
@@ -41,7 +42,8 @@ const WelcomeScreen: React.FC = () => {
         variant="outline"
         borderColor="#e52d2d"
         color="#e52d2d"
-        width="100%"
+        width="auto"
+        display="flex"
         background="transparent"
         hover={{
           borderColor: "#d02626",

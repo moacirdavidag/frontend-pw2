@@ -7,8 +7,8 @@ type Props = {
 
 export const CategoryWrapper = styled.div<Props>`
   padding: 12px;
-  height: auto;
-  gap: 12px;
+  height: 50px;
+  gap: 5px;
   background-color: ${({ isActive }) =>
     isActive ? theme.colors.primary : "#F2F2F2"};
   color: ${({ isActive }) => (isActive ? "white" : "#DCDCDC")};

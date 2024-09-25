@@ -39,30 +39,6 @@ const CATEGORIES = [
       "Delicioso hambúrguer para toda a família em promoção. É só essa semana!",
     preco: 24.99,
   },
-  {
-    titulo: "Saladas",
-    isActive: false,
-    imagem: "/img/hamburguer.png",
-    descricao:
-      "Delicioso hambúrguer para toda a família em promoção. É só essa semana!",
-    preco: 24.99,
-  },
-  {
-    titulo: "Saladas",
-    isActive: false,
-    imagem: "/img/hamburguer.png",
-    descricao:
-      "Delicioso hambúrguer para toda a família em promoção. É só essa semana!",
-    preco: 24.99,
-  },
-  {
-    titulo: "Saladas",
-    isActive: false,
-    imagem: "/img/hamburguer.png",
-    descricao:
-      "Delicioso hambúrguer para toda a família em promoção. É só essa semana!",
-    preco: 24.99,
-  },
 ];
 
 const CategoriesList: React.FC = () => {
@@ -119,7 +95,7 @@ const CategoriesList: React.FC = () => {
       )}
 
       <Stack
-        width={"100vw"}
+        width={"100%"}
         display={"flex"}
         flexDirection={"row"}
         justifyContent={"space-between"}
@@ -146,6 +122,7 @@ const CategoriesList: React.FC = () => {
       </Stack>
       <Stack
         gap={1}
+        flex={1}
         direction={"row"}
         width={"100vw"}
         px={5}

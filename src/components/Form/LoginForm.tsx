@@ -14,6 +14,7 @@ import { PageLayout } from "../PageLayout/PageLayout";
 import { Illustration } from "../illustration/Illustration";
 import { MdLogin } from "react-icons/md";
 import ActionButton from "../Button/ActionButton";
+import TitleWithSubtitle from "../TitleWithSubtitle/TittleWithSub";
 
 const LoginForm: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -29,6 +30,12 @@ const LoginForm: React.FC = () => {
         src="src/assets/imgs/motoca.png"
         alt="Imagem de Boas Vindas - Motoca"
         mb="4"
+      />
+
+      <TitleWithSubtitle
+        title="Fazer Login"
+        subtitle="Informe seu email e senha."
+        textAlign="center"
       />
 
       <Stack spacing="4" width="full">

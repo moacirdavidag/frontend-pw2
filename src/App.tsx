@@ -9,7 +9,7 @@ import Sobre from "./pages/Sobre/SobreScreen";
 import Contato from "./pages/Contato/ContatoScreen";
 import WelcomeScreen from "./pages/BoasVindas/BoasVindas";
 import Home from "./pages/Home/Home";
-
+import Equipe from "./pages/Equipe/EquipeScreen";
 
 
 function App() {
@@ -24,6 +24,7 @@ function App() {
           <Route path="/sobre" element={<Sobre/>} /> 
           <Route path="/contato" element={<Contato/>} /> 
           <Route path="/home" element={<Home />} />
+          <Route path="/equipe" element={<Equipe/>} /> 
         </Routes>
       </Router>
     </ChakraProvider>
