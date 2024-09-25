@@ -53,7 +53,9 @@ const ModalReset: React.FC<ModalResetProps> = ({ isOpen, onClose }) => {
             titulo="OK"
             onClick={onClose}
             borderRadius="40px"
-            width="180px"
+            alignItems="center"
+            justifyContent="center"
+            width="100%"
             height="50px"
             padding="12px 16px"
             gap="10px"

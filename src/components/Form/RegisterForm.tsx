@@ -199,7 +199,7 @@ const RegisterForm: React.FC = () => {
                 titulo="Voltar"
                 onClick={() => setTabIndex(0)} // Voltar ao formulário anterior
                 background="#FCFCFC"
-                color="gray.600"
+                color="#717171"
                 border="1px solid #DCDCDC"
                 hover={{ bg: "gray.400" }}
                 width="45%"
