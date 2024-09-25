@@ -8,7 +8,7 @@ const LoginScreen: React.FC = () => {
       display="flex"
       justifyContent="center"
       alignItems="center"
-      bg="gray.50"
+      bg="#FFFFFF"
       height="100vh"
     >
       <LoginForm />
