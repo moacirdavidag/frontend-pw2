@@ -3,7 +3,7 @@ import theme from "../../../styles/global";
 import breakpoints from "../../../utils/breakpoints";
 
 export const HeaderWrapper = styled.header`
-  width: 100%;
+  width: 100vw;
   background-color: ${theme.colors.primary};
   min-height: 20px;
   display: flex;
