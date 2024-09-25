@@ -9,6 +9,7 @@ type Props = {
 export const BannerWrapper = styled.div<Props>`
   background-color: ${({backgroundBanner}) => backgroundBanner ? backgroundBanner : theme.colors.yellow}; 
   display: flex;
+  max-height: 320px;
   flex-direction: row;
   align-items: center;
   padding: 20px;
