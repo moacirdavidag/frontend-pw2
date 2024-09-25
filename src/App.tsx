@@ -7,6 +7,8 @@ import RegisterScreen from "./pages/Register/RegisterScreen";
 import Sobre from "./pages/Sobre/SobreScreen";
 import Contato from "./pages/Contato/ContatoScreen";
 import Equipe from "./pages/Equipe/EquipeScreen";
+import Perfil from "./pages/Perfil/PerfilScreen";
+
 import Home from "./pages/Home/Home";
 import Dashboard from "./pages/Dashboard/DashboardScreen";
 
@@ -23,6 +25,7 @@ function App() {
           <Route path="/contato" element={<Contato />} />
           <Route path="/equipe" element={<Equipe />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/perfil" element={<Perfil/>} /> 
           <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </Router>
