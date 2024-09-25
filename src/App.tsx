@@ -1,17 +1,16 @@
-import React from "react";
-import { ChakraProvider, Box } from "@chakra-ui/react";
+import { ChakraProvider } from "@chakra-ui/react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import BoasVindas from "./pages/BoasVindas/BoasVindas";
+import WelcomeScreen from "./pages/BoasVindas/BoasVindas";
 import LoginScreen from "./pages/Login/LoginScreen";
 import ForgotPasswordScreen from "./pages/ForgotPassword/ForgotPasswordScreen";
 import RegisterScreen from "./pages/Register/RegisterScreen";
 import Sobre from "./pages/Sobre/SobreScreen";
 import Contato from "./pages/Contato/ContatoScreen";
-import WelcomeScreen from "./pages/BoasVindas/BoasVindas";
-import Home from "./pages/Home/Home";
 import Equipe from "./pages/Equipe/EquipeScreen";
 import Perfil from "./pages/Perfil/PerfilScreen";
 
+import Home from "./pages/Home/Home";
+import Dashboard from "./pages/Dashboard/DashboardScreen";
 
 function App() {
   return (
@@ -22,11 +21,12 @@ function App() {
           <Route path="/login" element={<LoginScreen />} />
           <Route path="/forgot-password" element={<ForgotPasswordScreen />} />
           <Route path="/register" element={<RegisterScreen />} />
-          <Route path="/sobre" element={<Sobre/>} /> 
-          <Route path="/contato" element={<Contato/>} /> 
+          <Route path="/sobre" element={<Sobre />} />
+          <Route path="/contato" element={<Contato />} />
+          <Route path="/equipe" element={<Equipe />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/equipe" element={<Equipe/>} /> 
           <Route path="/perfil" element={<Perfil/>} /> 
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </Router>
     </ChakraProvider>

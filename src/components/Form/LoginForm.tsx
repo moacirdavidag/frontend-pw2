@@ -72,7 +72,7 @@ const LoginForm: React.FC = () => {
         />
 
         {/* Link Esqueci minha senha */}
-        <Box textAlign="left" mb="2">
+        <Box textAlign="left" mb="4">
           <Text
             fontSize="14px"
             fontWeight="semibold"
