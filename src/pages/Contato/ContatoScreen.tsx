@@ -11,10 +11,12 @@ import {
 } from "@chakra-ui/react";
 import ActionButton from "../../components/Button/ActionButton";
 import { InputField } from "../../components/InputField/InputField";
+import { Header } from "../../components/Header/Header";
 
 const Contato = () => {
   return (
     <Box p={5} maxW="600px" mx="auto">
+      <Header logoSrc="src/assets/imgs/logo.png" />
       {/* Imagem no topo */}
       <Image
         src="src/assets/imgs/contato.png"

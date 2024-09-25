@@ -33,7 +33,8 @@ const WelcomeScreen: React.FC = () => {
         onClick={() => handleLoginClick()}
         background="red.500"
         color="white"
-        width="auto"
+        width="100%"
+        height="50px"
         display="flex"
         mb={4}
       />
@@ -42,7 +43,8 @@ const WelcomeScreen: React.FC = () => {
         variant="outline"
         borderColor="#e52d2d"
         color="#e52d2d"
-        width="auto"
+        width="100%"
+        height="50px"
         display="flex"
         background="transparent"
         hover={{
@@ -51,7 +53,6 @@ const WelcomeScreen: React.FC = () => {
           backgroundColor: "#D3D3D3",
         }}
         borderRadius="40px"
-        p="24px 156px"
         fontSize="16px"
         fontWeight="bold"
         onClick={() => navigate("/register")} // Função para navegação
