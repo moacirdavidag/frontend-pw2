@@ -12,11 +12,20 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { MdKeyboardArrowDown, MdLogout } from "react-icons/md";
-import { IoLocation, IoPerson } from "react-icons/io5";
 import theme from "../../../styles/global";
 import useIsMobile from "../../../hooks/useIsMobile";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../../../context/AuthContext";
+import {
+  IoPerson,
+  IoHeart,
+  IoNotifications,
+  IoPeople,
+  IoInformationCircle,
+  IoCall,
+  IoList,
+  IoLocation,
+} from "react-icons/io5";
 
 const Header: React.FC = () => {
   const apiUrl = import.meta.env.VITE_API_URL;
@@ -26,8 +35,6 @@ const Header: React.FC = () => {
   const { logout } = useAuth();
   const username = localStorage.getItem("username");
   const avatarUrl = localStorage.getItem("avatarUrl");
-
-  
 
   const isActive = (path: string) => location.pathname === path;
 
@@ -55,13 +62,72 @@ const Header: React.FC = () => {
                     <Avatar style={{ width: "30px", height: "30px" }} />
                   </MenuButton>
                   <MenuList>
+                    <MenuItem>Olá, {username}!</MenuItem>
                     <MenuItem
                       icon={<Icon as={IoPerson} color={theme.colors.primary} />}
                       onClick={() => {
-                        navigate('/perfil')
+                        navigate("/perfil");
                       }}
                     >
                       Perfil
+                    </MenuItem>
+                    <MenuItem
+                      icon={<Icon as={IoList} color={theme.colors.primary} />}
+                      onClick={() => {
+                        navigate("/pedidos");
+                      }}
+                    >
+                      Pedidos
+                    </MenuItem>
+                    <MenuItem
+                      icon={<Icon as={IoHeart} color={theme.colors.primary} />}
+                      onClick={() => {
+                        navigate("/favoritos");
+                      }}
+                    >
+                      Favoritos
+                    </MenuItem>
+                    <MenuItem
+                      icon={
+                        <Icon
+                          as={IoNotifications}
+                          color={theme.colors.primary}
+                        />
+                      }
+                      onClick={() => {
+                        navigate("/notificacoes");
+                      }}
+                    >
+                      Notificações
+                    </MenuItem>
+                    <MenuItem
+                      icon={<Icon as={IoPeople} color={theme.colors.primary} />}
+                      onClick={() => {
+                        navigate("/equipe");
+                      }}
+                    >
+                      Equipe
+                    </MenuItem>
+                    <MenuItem
+                      icon={
+                        <Icon
+                          as={IoInformationCircle}
+                          color={theme.colors.primary}
+                        />
+                      }
+                      onClick={() => {
+                        navigate("/sobre");
+                      }}
+                    >
+                      Sobre
+                    </MenuItem>
+                    <MenuItem
+                      icon={<Icon as={IoCall} color={theme.colors.primary} />}
+                      onClick={() => {
+                        navigate("/contato");
+                      }}
+                    >
+                      Contato
                     </MenuItem>
                     <MenuItem
                       icon={<Icon as={MdLogout} color={theme.colors.primary} />}
@@ -175,6 +241,72 @@ const Header: React.FC = () => {
                     Notificações
                   </Text>
                 </Box>
+                <Box>
+                  <Text
+                    sx={{
+                      color: "white",
+                      fontWeight: 500,
+                      textDecoration: "none",
+                      borderBottom: isActive("/equipe")
+                        ? `2px solid ${theme.colors.yellow}`
+                        : "2px solid transparent",
+                      transition: "border-color 0.3s ease",
+                      "&:hover": {
+                        borderBottom: `2px solid ${theme.colors.yellow}`,
+                      },
+                      cursor: "pointer",
+                    }}
+                    onClick={() => {
+                      navigate("/equipe");
+                    }}
+                  >
+                    Equipe
+                  </Text>
+                </Box>
+                <Box>
+                  <Text
+                    sx={{
+                      color: "white",
+                      fontWeight: 500,
+                      textDecoration: "none",
+                      borderBottom: isActive("/sobre")
+                        ? `2px solid ${theme.colors.yellow}`
+                        : "2px solid transparent",
+                      transition: "border-color 0.3s ease",
+                      "&:hover": {
+                        borderBottom: `2px solid ${theme.colors.yellow}`,
+                      },
+                      cursor: "pointer",
+                    }}
+                    onClick={() => {
+                      navigate("/sobre");
+                    }}
+                  >
+                    Sobre
+                  </Text>
+                </Box>
+                <Box>
+                  <Text
+                    sx={{
+                      color: "white",
+                      fontWeight: 500,
+                      textDecoration: "none",
+                      borderBottom: isActive("/contato")
+                        ? `2px solid ${theme.colors.yellow}`
+                        : "2px solid transparent",
+                      transition: "border-color 0.3s ease",
+                      "&:hover": {
+                        borderBottom: `2px solid ${theme.colors.yellow}`,
+                      },
+                      cursor: "pointer",
+                    }}
+                    onClick={() => {
+                      navigate("/contato");
+                    }}
+                  >
+                    Notificações
+                  </Text>
+                </Box>
               </Stack>
             </Stack>
             <Stack
@@ -200,7 +332,10 @@ const Header: React.FC = () => {
                   {({ isOpen }) => (
                     <>
                       <MenuButton isActive={isOpen}>
-                        <Avatar style={{ width: "30px", height: "30px" }} src={`${apiUrl}/public/uploads/${avatarUrl}`} />
+                        <Avatar
+                          style={{ width: "30px", height: "30px" }}
+                          src={`${apiUrl}/public/uploads/${avatarUrl}`}
+                        />
                       </MenuButton>
                       <MenuList>
                         <MenuItem>
@@ -211,7 +346,7 @@ const Header: React.FC = () => {
                             <Icon as={IoPerson} color={theme.colors.primary} />
                           }
                           onClick={() => {
-                            navigate('/perfil')
+                            navigate("/perfil");
                           }}
                         >
                           Perfil

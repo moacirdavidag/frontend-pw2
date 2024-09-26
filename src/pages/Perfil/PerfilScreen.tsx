@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from "react";
-import { Box, Heading, Avatar, SimpleGrid, Flex, Stack, Input, Button, IconButton, Text, useToast } from "@chakra-ui/react";
+import { Box, Heading, Avatar, SimpleGrid, Flex, Stack, Input, Button, IconButton, Text, useToast, Icon } from "@chakra-ui/react";
 import { InputField } from "../../components/InputField/InputField";
 import ButtonSecundary from "../../components/Button/ButtonSecundary";
 import ActionButton from "../../components/Button/ActionButton";
@@ -10,6 +10,7 @@ import { Form, Formik } from "formik";
 import API from "../../services/api";
 import { Link } from "react-router-dom";
 import theme from "../../styles/global";
+import { ArrowLeftIcon } from "@chakra-ui/icons";
 
 
 const Perfil = () => {
@@ -128,7 +129,7 @@ const Perfil = () => {
         Meu Perfil
       </Heading>
       <Box my={2}>
-        <Link to="/home" color={theme.colors.primary}>Home</Link>
+        <Link to="/home" color={theme.colors.primary}><Icon as={ArrowLeftIcon} />Home</Link>
       </Box>
 
       {/* Dados Pessoais com Avatar e Logout */}

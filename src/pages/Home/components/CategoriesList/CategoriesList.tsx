@@ -25,51 +25,6 @@ const CATEGORIES = [
       "Delicioso hambúrguer para toda a família em promoção. É só essa semana!",
     preco: 24.99,
   },
-  {
-    id: 1,
-    titulo: "Saladas",
-    isActive: false,
-    imagem: "/img/hamburguer.png",
-    descricao:
-      "Delicioso hambúrguer para toda a família em promoção. É só essa semana!",
-    preco: 24.99,
-  },
-  {
-    id: 1,
-    titulo: "Saladas",
-    isActive: false,
-    imagem: "/img/hamburguer.png",
-    descricao:
-      "Delicioso hambúrguer para toda a família em promoção. É só essa semana!",
-    preco: 24.99,
-  },
-  {
-    id: 1,
-    titulo: "Saladas",
-    isActive: false,
-    imagem: "/img/hamburguer.png",
-    descricao:
-      "Delicioso hambúrguer para toda a família em promoção. É só essa semana!",
-    preco: 24.99,
-  },
-  {
-    id: 1,
-    titulo: "Saladas",
-    isActive: false,
-    imagem: "/img/hamburguer.png",
-    descricao:
-      "Delicioso hambúrguer para toda a família em promoção. É só essa semana!",
-    preco: 24.99,
-  },
-  {
-    id: 1,
-    titulo: "Saladas",
-    isActive: false,
-    imagem: "/img/hamburguer.png",
-    descricao:
-      "Delicioso hambúrguer para toda a família em promoção. É só essa semana!",
-    preco: 24.99,
-  },
 ];
 
 const CategoriesList: React.FC = () => {
