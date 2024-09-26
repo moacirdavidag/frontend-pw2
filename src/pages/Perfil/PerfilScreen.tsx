@@ -8,6 +8,8 @@ import { IoExitOutline } from "react-icons/io5";
 import { useAuth } from "../../context/AuthContext";
 import { Form, Formik } from "formik";
 import API from "../../services/api";
+import { Link } from "react-router-dom";
+import theme from "../../styles/global";
 
 
 const Perfil = () => {
@@ -15,6 +17,7 @@ const Perfil = () => {
   const [avatar, setAvatar] = useState("https://via.placeholder.com/150");
   const username = localStorage.getItem("username");
   const id = Number(localStorage.getItem("id"));
+  const apiUrl = import.meta.env.VITE_API_URL;
   const {logout} = useAuth();
   const initialValues = {
     name: "",            
@@ -27,9 +30,11 @@ const Perfil = () => {
     complement: "",      
     city: "",            
     state: "",           
-    reference: "",      
+    reference: "",
+    avatar_url: null      
   };
   const [user, setUser] = useState(initialValues);
+  const [avatarUrl, setAvatarUrl] = useState("");
   const toast = useToast();
 
 
@@ -40,9 +45,14 @@ const Perfil = () => {
       formData.append(key, value);
     });
 
-    if (avatar) {
+    if (avatar && avatar?.type) {
       formData.append("avatar", avatar);
+    } else {
+      formData.append("avatar", user?.avatar_url);
     }
+    console.log(avatar)
+
+    console.log(`avatar_url: ${formData.get('avatar')}`);
 
     try {
       const response = await API.put(`/users/${id}`, formData, {
@@ -52,6 +62,8 @@ const Perfil = () => {
       });
       
       if (response.status === 200) {
+        const {avatar_url} = response.data;
+        localStorage.setItem('avatarUrl', avatar_url);
         toast({
           title: "Usuário atualizado com sucesso!",
           description: "As informações foram salvas!",
@@ -60,6 +72,8 @@ const Perfil = () => {
           isClosable: true,
           position: "top-right",
         });
+        setAvatar("");
+        setAvatarUrl("");
         getUserInfo();
       }
     } catch (error) {
@@ -81,8 +95,8 @@ const Perfil = () => {
   const handleAvatarUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files[0]) {
       const file = event.target.files[0];
-      const avatarURL = URL.createObjectURL(file);
-      setAvatar(avatarURL);
+      setAvatar(file);
+      setAvatarUrl(URL.createObjectURL(file));
     }
   };
 
@@ -100,15 +114,22 @@ const Perfil = () => {
     }
   }
 
+
   useEffect(() => {
     getUserInfo();
   }, [id])
+
+  console.log("USER")
+  console.log(user);
 
   return (
     <Box p={5} maxW="1200px" mx="auto">
       <Heading as="h1" fontSize="24px" fontWeight="semibold" mb={6} textAlign="left">
         Meu Perfil
       </Heading>
+      <Box my={2}>
+        <Link to="/home" color={theme.colors.primary}>Home</Link>
+      </Box>
 
       {/* Dados Pessoais com Avatar e Logout */}
       <Box
@@ -123,7 +144,7 @@ const Perfil = () => {
       >
         {/* Avatar e Upload */}
         <Box display="flex" alignItems="center">
-          <Avatar size="xl" name={username ?? "Usuário"} src={avatar} />
+          <Avatar size="xl" name={username ?? "Usuário"} src={!avatarUrl ? `${apiUrl}/public/uploads/${user?.avatar_url}` : avatarUrl} />
           <Box ml={4}>
             <Heading as="h2" fontSize="20px" fontWeight="bold">
               {username ?? "Usuário"}
@@ -179,24 +200,6 @@ const Perfil = () => {
                 value={values.name}
               />
               <InputField
-                id="cpf"
-                name="cpf"
-                placeholder="148.587.658-55"
-                focusBorderColor="red.500"
-                borderRadius="40px"
-                onChange={handleChange}
-                value={values.cpf}
-              />
-              <InputField
-                id="phone"
-                name="phone"
-                placeholder="(83) 9 9876-1232"
-                focusBorderColor="red.500"
-                borderRadius="40px"
-                onChange={handleChange}
-                value={values.phone}
-              />
-              <InputField
                 id="email"
                 name="email"
                 placeholder="ricardo24@gmail.com"
@@ -238,15 +241,6 @@ const Perfil = () => {
                 borderRadius="40px"
                 onChange={handleChange}
                 value={values.number}
-              />
-              <InputField
-                id="complement"
-                name="complement"
-                placeholder="Casa"
-                focusBorderColor="red.500"
-                borderRadius="40px"
-                onChange={handleChange}
-                value={values.complement}
               />
               <InputField
                 id="city"

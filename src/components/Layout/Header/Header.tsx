@@ -19,11 +19,15 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../../../context/AuthContext";
 
 const Header: React.FC = () => {
+  const apiUrl = import.meta.env.VITE_API_URL;
   const isMobile = useIsMobile();
   const navigate = useNavigate();
   const location = useLocation();
   const { logout } = useAuth();
   const username = localStorage.getItem("username");
+  const avatarUrl = localStorage.getItem("avatarUrl");
+
+  
 
   const isActive = (path: string) => location.pathname === path;
 
@@ -196,7 +200,7 @@ const Header: React.FC = () => {
                   {({ isOpen }) => (
                     <>
                       <MenuButton isActive={isOpen}>
-                        <Avatar style={{ width: "30px", height: "30px" }} />
+                        <Avatar style={{ width: "30px", height: "30px" }} src={`${apiUrl}/public/uploads/${avatarUrl}`} />
                       </MenuButton>
                       <MenuList>
                         <MenuItem>
