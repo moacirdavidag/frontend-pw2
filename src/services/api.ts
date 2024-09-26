@@ -29,6 +29,7 @@ API.interceptors.response.use(
   (error) => {
     if (error.response && error.response.status === 401) {
       console.log("Token expirado ou não autorizado, faça o logout");
+      localStorage.clear();
       window.location.href = '/';
     }
 

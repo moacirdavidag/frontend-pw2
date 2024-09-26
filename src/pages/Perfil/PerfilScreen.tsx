@@ -15,6 +15,7 @@ const Perfil = () => {
   const [avatar, setAvatar] = useState("https://via.placeholder.com/150");
   const username = localStorage.getItem("username");
   const id = Number(localStorage.getItem("id"));
+  const apiUrl = import.meta.env.VITE_API_URL;
   const {logout} = useAuth();
   const initialValues = {
     name: "",            
@@ -27,9 +28,11 @@ const Perfil = () => {
     complement: "",      
     city: "",            
     state: "",           
-    reference: "",      
+    reference: "",
+    avatar_url: null      
   };
   const [user, setUser] = useState(initialValues);
+  const [avatarUrl, setAvatarUrl] = useState("");
   const toast = useToast();
 
 
@@ -42,6 +45,8 @@ const Perfil = () => {
 
     if (avatar) {
       formData.append("avatar", avatar);
+    } else {
+      formData.append("avatar", user?.avatar_url);
     }
 
     try {
@@ -60,6 +65,8 @@ const Perfil = () => {
           isClosable: true,
           position: "top-right",
         });
+        setAvatar("");
+        setAvatarUrl("");
         getUserInfo();
       }
     } catch (error) {
@@ -81,8 +88,8 @@ const Perfil = () => {
   const handleAvatarUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files[0]) {
       const file = event.target.files[0];
-      const avatarURL = URL.createObjectURL(file);
-      setAvatar(avatarURL);
+      setAvatar(file);
+      setAvatarUrl(URL.createObjectURL(file));
     }
   };
 
@@ -123,7 +130,7 @@ const Perfil = () => {
       >
         {/* Avatar e Upload */}
         <Box display="flex" alignItems="center">
-          <Avatar size="xl" name={username ?? "Usuário"} src={avatar} />
+          <Avatar size="xl" name={username ?? "Usuário"} src={!avatarUrl ? `${apiUrl}/public/uploads/${user?.avatar_url}` : avatarUrl} />
           <Box ml={4}>
             <Heading as="h2" fontSize="20px" fontWeight="bold">
               {username ?? "Usuário"}
