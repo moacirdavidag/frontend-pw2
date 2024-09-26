@@ -19,7 +19,7 @@ type Props = {
   padding?: string; // Padding personalizável
   fontSize?: string; // Tamanho da fonte personalizável
   width?: string; // Largura personalizável
-  height?: string; // Altura personalizável
+  height?: string; // Altura personalizável[]
 };
 
 const ActionButton: React.FC<ButtonProps & Props> = ({
