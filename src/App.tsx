@@ -12,6 +12,7 @@ import Home from "./pages/Home/Home";
 import Dashboard from "./pages/Dashboard/DashboardScreen";
 import DetalhesProduto from "./pages/DetalhesProduto/DetalhesProduto";
 import NotificationsScreen from "./pages/Notifications/NotificationsScreen";
+import Pedidos from "./pages/Pedidos/Pedidos";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/produto/:id" element={<DetalhesProduto />} />
           <Route path="/notificacoes" element={<NotificationsScreen />} />
+          <Route path="/pedidos" element={<Pedidos />} />
         </Routes>
       </Router>
     </ChakraProvider>

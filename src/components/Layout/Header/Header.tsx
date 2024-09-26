@@ -15,10 +15,15 @@ import { MdKeyboardArrowDown, MdLogout } from "react-icons/md";
 import { IoLocation, IoPerson } from "react-icons/io5";
 import theme from "../../../styles/global";
 import useIsMobile from "../../../hooks/useIsMobile";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
 const Header: React.FC = () => {
   const isMobile = useIsMobile();
+  const navigate = useNavigate();
+  const location = useLocation(); 
+
+  const isActive = (path: string) => location.pathname === path;
+
   return (
     <HeaderWrapper>
       {isMobile ? (
@@ -78,12 +83,17 @@ const Header: React.FC = () => {
                       color: "white",
                       fontWeight: 500,
                       textDecoration: "none",
-                      borderBottom: "2px solid transparent",
+                      borderBottom: isActive('/home') 
+                        ? `2px solid ${theme.colors.yellow}` 
+                        : "2px solid transparent",
                       transition: "border-color 0.3s ease",
                       "&:hover": {
                         borderBottom: `2px solid ${theme.colors.yellow}`,
                       },
                       cursor: "pointer",
+                    }}
+                    onClick={() => {
+                      navigate('/home');
                     }}
                   >
                     Home
@@ -95,12 +105,17 @@ const Header: React.FC = () => {
                       color: "white",
                       fontWeight: 500,
                       textDecoration: "none",
-                      borderBottom: "2px solid transparent",
+                      borderBottom: isActive('/pedidos') 
+                        ? `2px solid ${theme.colors.yellow}` 
+                        : "2px solid transparent",
                       transition: "border-color 0.3s ease",
                       "&:hover": {
                         borderBottom: `2px solid ${theme.colors.yellow}`,
                       },
                       cursor: "pointer",
+                    }}
+                    onClick={() => {
+                      navigate('/pedidos');
                     }}
                   >
                     Pedidos
@@ -112,12 +127,17 @@ const Header: React.FC = () => {
                       color: "white",
                       fontWeight: 500,
                       textDecoration: "none",
-                      borderBottom: "2px solid transparent",
+                      borderBottom: isActive('/favoritos') 
+                        ? `2px solid ${theme.colors.yellow}` 
+                        : "2px solid transparent",
                       transition: "border-color 0.3s ease",
                       "&:hover": {
                         borderBottom: `2px solid ${theme.colors.yellow}`,
                       },
                       cursor: "pointer",
+                    }}
+                    onClick={() => {
+                      navigate('/favoritos');
                     }}
                   >
                     Favoritos
@@ -129,12 +149,17 @@ const Header: React.FC = () => {
                       color: "white",
                       fontWeight: 500,
                       textDecoration: "none",
-                      borderBottom: "2px solid transparent",
+                      borderBottom: isActive('/notificacoes') 
+                        ? `2px solid ${theme.colors.yellow}` 
+                        : "2px solid transparent",
                       transition: "border-color 0.3s ease",
                       "&:hover": {
                         borderBottom: `2px solid ${theme.colors.yellow}`,
                       },
                       cursor: "pointer",
+                    }}
+                    onClick={() => {
+                      navigate('/notificacoes');
                     }}
                   >
                     Notificações
