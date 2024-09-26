@@ -28,7 +28,7 @@ const NotificationsScreen = () => {
 
   return (
     <PageLayout shouldDisplayHeader={true}>
-      <VStack spacing={4} p={6} align="flex-start">
+      <VStack spacing={4} p={6} align="flex-start" minHeight={"100vh"}>
         <Text fontSize="2xl" fontWeight="bold">
           Notificações
         </Text>

@@ -55,7 +55,7 @@ const DetalhesProduto: React.FC = () => {
             <InfoProduto
               nome="Baconzudo com muita carne"
               preco={24.99}
-              descricao="LOREM IMPSUM LALALALALALALAL OEOEHSJSHJ DHJSJHSJHJ EUEEDJ"
+              descricao="Suculento hambúrguer de carne 100% bovina, molho cremoso sabor cheddar, o dobro de fatias de bacon, tudo isso em um pão brioche quentinho. Um verdadeiro baconzudo de responsa!"
               imagem="/img/hamburguer.png"
             />
             <Box my={4}>
