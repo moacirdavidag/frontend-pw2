@@ -2,10 +2,15 @@ import React, { useContext } from "react";
 import { Navigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 
-const AdminRoute = ({ element }) => {
-  const { isAdmin } = useAuth(); 
+type Props = {
+    element: React.ReactElement
+}
 
-  return isAdmin ? element : <Navigate to="/" />;
+const AdminRoute = ({ element }: Props) => {
+  const { isAdmin } = useAuth(); 
+  const role = localStorage.getItem('role');
+
+  return role === 'admin' ? element : <Navigate to="/" />;
 };
 
 export default AdminRoute;

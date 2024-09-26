@@ -32,7 +32,7 @@ const LoginForm: React.FC = () => {
   const navigate = useNavigate();
 
   const toast = useToast();
-  const { login } = useAuth();
+  const { login, setIsAdmin } = useAuth();
 
 
   const handleSubmit = async (
@@ -45,7 +45,13 @@ const LoginForm: React.FC = () => {
         password: values.password,
       });
       if (response.status === 201) {
-        const {access_token, username, id, avatar_url} = response.data;
+        console.log(response.data)
+        const {access_token, username, id, avatar_url, role} = response.data;
+        if(role === "admin") {
+          console.log("é admin sim")
+          localStorage.setItem('role', role );
+          setIsAdmin(true);
+        }
         login(access_token);
         localStorage.setItem('username', username);
         localStorage.setItem('id', id);

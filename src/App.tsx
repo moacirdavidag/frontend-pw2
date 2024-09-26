@@ -17,6 +17,7 @@ import AuthRoute from "./components/AuthRoute/AuthRoute";
 import { AuthProvider } from "./context/AuthContext";
 import PedidosDashboard from "./pages/Dashboard/PedidosDashboard/PedidosDashboard";
 import AdminRoute from "./components/AdminRoute/AdminRoute";
+import ProdutoDashboard from "./pages/Dashboard/ProdutoDashboard/ProdutoDashboard";
 
 function App() {
   return (
@@ -62,6 +63,10 @@ function App() {
             <Route
               path="/dashboard/pedidos"
               element={<AdminRoute element={<Dashboard children={<PedidosDashboard />} />} />}
+            />
+            <Route
+              path="/dashboard/produtos"
+              element={<AdminRoute element={<Dashboard children={<ProdutoDashboard />} />} />}
             />
           </Routes>
         </Router>
