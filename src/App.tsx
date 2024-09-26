@@ -11,6 +11,7 @@ import Perfil from "./pages/Perfil/PerfilScreen";
 
 import Home from "./pages/Home/Home";
 import Dashboard from "./pages/Dashboard/DashboardScreen";
+import DetalhesProduto from "./pages/DetalhesProduto/DetalhesProduto";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/perfil" element={<Perfil/>} /> 
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/produto/:id" element={<DetalhesProduto />} />
         </Routes>
       </Router>
     </ChakraProvider>
