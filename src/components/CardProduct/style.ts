@@ -11,4 +11,5 @@ export const CardProductWrapper = styled.div`
     align-items: center;
     justify-content: center;
     gap: 5px;
+    white-space: wrap;
 `;

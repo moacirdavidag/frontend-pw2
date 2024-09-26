@@ -8,6 +8,7 @@ import useIsMobile from "../../../../hooks/useIsMobile";
 
 const CATEGORIES = [
   {
+    id: 1,
     titulo: "Lanches",
     isActive: true,
     imagem: "/img/hamburguer.png",
@@ -16,6 +17,7 @@ const CATEGORIES = [
     preco: 24.99,
   },
   {
+    id: 1,
     titulo: "Pizzarias",
     isActive: false,
     imagem: "/img/hamburguer.png",
@@ -24,6 +26,7 @@ const CATEGORIES = [
     preco: 24.99,
   },
   {
+    id: 1,
     titulo: "Saladas",
     isActive: false,
     imagem: "/img/hamburguer.png",
@@ -32,6 +35,34 @@ const CATEGORIES = [
     preco: 24.99,
   },
   {
+    id: 1,
+    titulo: "Saladas",
+    isActive: false,
+    imagem: "/img/hamburguer.png",
+    descricao:
+      "Delicioso hambúrguer para toda a família em promoção. É só essa semana!",
+    preco: 24.99,
+  },
+  {
+    id: 1,
+    titulo: "Saladas",
+    isActive: false,
+    imagem: "/img/hamburguer.png",
+    descricao:
+      "Delicioso hambúrguer para toda a família em promoção. É só essa semana!",
+    preco: 24.99,
+  },
+  {
+    id: 1,
+    titulo: "Saladas",
+    isActive: false,
+    imagem: "/img/hamburguer.png",
+    descricao:
+      "Delicioso hambúrguer para toda a família em promoção. É só essa semana!",
+    preco: 24.99,
+  },
+  {
+    id: 1,
     titulo: "Saladas",
     isActive: false,
     imagem: "/img/hamburguer.png",
@@ -128,6 +159,7 @@ const CategoriesList: React.FC = () => {
         px={5}
         sx={{
           overflowX: "scroll",
+          whiteSpace: "nowrap",
           scrollbarWidth: "none",
           "&::-webkit-scrollbar": {
             display: "none",
@@ -141,6 +173,7 @@ const CategoriesList: React.FC = () => {
             imagem={categoria.imagem}
             descricao={categoria.descricao}
             preco={categoria.preco}
+            id={categoria.id}
           />
         ))}
       </Stack>
