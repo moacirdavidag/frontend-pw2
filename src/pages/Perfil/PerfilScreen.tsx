@@ -11,6 +11,7 @@ import API from "../../services/api";
 import { Link } from "react-router-dom";
 import theme from "../../styles/global";
 import { ArrowLeftIcon } from "@chakra-ui/icons";
+import Header from "../../components/Layout/Header/Header";
 
 
 const Perfil = () => {
@@ -124,7 +125,9 @@ const Perfil = () => {
   console.log(user);
 
   return (
-    <Box p={5} maxW="1200px" mx="auto">
+    <Box p={5} maxW="100vw" mx="auto">
+
+      <Header />
       <Heading as="h1" fontSize="24px" fontWeight="semibold" mb={6} textAlign="left">
         Meu Perfil
       </Heading>
