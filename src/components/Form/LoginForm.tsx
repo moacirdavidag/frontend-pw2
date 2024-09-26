@@ -20,6 +20,7 @@ import * as Yup from "yup";
 import API from "../../services/api";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import theme from "../../styles/global";
+import { useAuth } from "../../context/AuthContext";
 
 const validationSchema = Yup.object({
   email: Yup.string().email("E-mail inválido").required("E-mail é obrigatório"),
@@ -31,6 +32,8 @@ const LoginForm: React.FC = () => {
   const navigate = useNavigate();
 
   const toast = useToast();
+  const { login } = useAuth();
+
 
   const handleSubmit = async (
     values: { email: string; password: string },
@@ -42,6 +45,10 @@ const LoginForm: React.FC = () => {
         password: values.password,
       });
       if (response.status === 201) {
+        const {access_token, username, id} = response.data;
+        login(access_token);
+        localStorage.setItem('username', username);
+        localStorage.setItem('id', id);
         toast({
           title: "Login bem-sucedido!",
           description: "Você será redirecionado para a página inicial!",

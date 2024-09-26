@@ -13,27 +13,47 @@ import Dashboard from "./pages/Dashboard/DashboardScreen";
 import DetalhesProduto from "./pages/DetalhesProduto/DetalhesProduto";
 import NotificationsScreen from "./pages/Notifications/NotificationsScreen";
 import Pedidos from "./pages/Pedidos/Pedidos";
+import AuthRoute from "./components/AuthRoute/AuthRoute";
+import { AuthProvider } from "./context/AuthContext";
 
 function App() {
   return (
     <ChakraProvider>
-      <Router>
-        <Routes>
-          <Route path="/" element={<WelcomeScreen />} />
-          <Route path="/login" element={<LoginScreen />} />
-          <Route path="/forgot-password" element={<ForgotPasswordScreen />} />
-          <Route path="/register" element={<RegisterScreen />} />
-          <Route path="/sobre" element={<Sobre />} />
-          <Route path="/contato" element={<Contato />} />
-          <Route path="/equipe" element={<Equipe />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/perfil" element={<Perfil />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/produto/:id" element={<DetalhesProduto />} />
-          <Route path="/notificacoes" element={<NotificationsScreen />} />
-          <Route path="/pedidos" element={<Pedidos />} />
-        </Routes>
-      </Router>
+      <AuthProvider>
+        <Router>
+          <Routes>
+            <Route path="/" element={<WelcomeScreen />} />
+            <Route path="/login" element={<LoginScreen />} />
+            <Route path="/forgot-password" element={<ForgotPasswordScreen />} />
+            <Route path="/register" element={<RegisterScreen />} />
+            <Route path="/sobre" element={<Sobre />} />
+            <Route path="/contato" element={<Contato />} />
+            <Route path="/equipe" element={<Equipe />} />
+            {/* Rotas privadas */}
+            <Route path="/home" element={<AuthRoute element={<Home />} />} />
+            <Route
+              path="/perfil"
+              element={<AuthRoute element={<Perfil />} />}
+            />
+            <Route
+              path="/dashboard"
+              element={<AuthRoute element={<Dashboard />} />}
+            />
+            <Route
+              path="/produto/:id"
+              element={<AuthRoute element={<DetalhesProduto />} />}
+            />
+            <Route
+              path="/notificacoes"
+              element={<AuthRoute element={<NotificationsScreen />} />}
+            />
+            <Route
+              path="/pedidos"
+              element={<AuthRoute element={<Pedidos />} />}
+            />
+          </Routes>
+        </Router>
+      </AuthProvider>
     </ChakraProvider>
   );
 }
