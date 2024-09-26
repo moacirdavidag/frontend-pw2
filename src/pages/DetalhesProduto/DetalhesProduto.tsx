@@ -38,6 +38,7 @@ const DetalhesProduto: React.FC = () => {
         <Grid
           p={1}
           width={"100vw"}
+          minHeight={"100vh"}
           display={"flex"}
           justifyContent={"space-evenly"}
           flexDirection={"row"}
