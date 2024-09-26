@@ -1,15 +1,81 @@
 
-import React, { useState } from "react";
-import { Box, Heading, Avatar, SimpleGrid, Flex, Stack, Input, Button, IconButton, Text } from "@chakra-ui/react";
+import React, { useEffect, useState } from "react";
+import { Box, Heading, Avatar, SimpleGrid, Flex, Stack, Input, Button, IconButton, Text, useToast } from "@chakra-ui/react";
 import { InputField } from "../../components/InputField/InputField";
 import ButtonSecundary from "../../components/Button/ButtonSecundary";
 import ActionButton from "../../components/Button/ActionButton";
 import { IoExitOutline } from "react-icons/io5";
+import { useAuth } from "../../context/AuthContext";
+import { Form, Formik } from "formik";
+import API from "../../services/api";
 
 
 const Perfil = () => {
 
   const [avatar, setAvatar] = useState("https://via.placeholder.com/150");
+  const username = localStorage.getItem("username");
+  const id = Number(localStorage.getItem("id"));
+  const {logout} = useAuth();
+  const initialValues = {
+    name: "",            
+    cpf: "",             
+    phone: "",           
+    email: "",           
+    street: "",          
+    neighborhood: "",    
+    number: "",          
+    complement: "",      
+    city: "",            
+    state: "",           
+    reference: "",      
+  };
+  const [user, setUser] = useState(initialValues);
+  const toast = useToast();
+
+
+  const handleSubmit = async (values: any, { setSubmitting }: any) => {
+    const formData = new FormData();
+    
+    Object.entries(values).forEach(([key, value]) => {
+      formData.append(key, value);
+    });
+
+    if (avatar) {
+      formData.append("avatar", avatar);
+    }
+
+    try {
+      const response = await API.put(`/users/${id}`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      
+      if (response.status === 200) {
+        toast({
+          title: "Usuário atualizado com sucesso!",
+          description: "As informações foram salvas!",
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+          position: "top-right",
+        });
+        getUserInfo();
+      }
+    } catch (error) {
+      toast({
+        title: "Erro ao atualizar o usuário!",
+        description: "Tente novamente!",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+        position: "top-right",
+      });
+      console.error("Erro ao atualizar o usuário:", error);
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   // Função para lidar com o upload de avatar
   const handleAvatarUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -19,6 +85,24 @@ const Perfil = () => {
       setAvatar(avatarURL);
     }
   };
+
+  const getUserInfo = async () => {
+    try {
+      await API.get(`/users/${id}`)
+      .then((response) => {
+        if(response.status === 200) {
+          setUser(response.data);
+          localStorage.setItem('username', response.data?.name);
+        }
+      })
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    getUserInfo();
+  }, [id])
 
   return (
     <Box p={5} maxW="1200px" mx="auto">
@@ -39,10 +123,10 @@ const Perfil = () => {
       >
         {/* Avatar e Upload */}
         <Box display="flex" alignItems="center">
-          <Avatar size="xl" name="Ricardo Dantas Silva" src={avatar} />
+          <Avatar size="xl" name={username ?? "Usuário"} src={avatar} />
           <Box ml={4}>
             <Heading as="h2" fontSize="20px" fontWeight="bold">
-              Ricardo Dantas Silva
+              {username ?? "Usuário"}
             </Heading>
             <Text>Usuário</Text>
 
@@ -73,7 +157,7 @@ const Perfil = () => {
           bg="blackAlpha.800"
           color="white"
           _hover={{ bg: "blackAlpha.600" }}
-          onClick={() => console.log("Logout")}
+          onClick={logout}
         />
       </Box>
 
@@ -81,97 +165,136 @@ const Perfil = () => {
       <Heading color= "#3E3E3E" as="h2" fontSize="18px" mb={4}>
         Dados Pessoais
       </Heading>
-      <Stack spacing={4} mb={6}>
-        <InputField
-          id="nome"
-          placeholder="Ricardo Dantas Silva"
-          focusBorderColor="red.500"
-          borderRadius="40px"
-        />
-        <InputField
-          id="cpf"
-          placeholder="148.587.658-55"
-          focusBorderColor="red.500"
-          borderRadius="40px"
-        />
-        <InputField
-          id="telefone"
-          placeholder="(83) 9 9876-1232"
-          focusBorderColor="red.500"
-          borderRadius="40px"
-        />
-        <InputField
-          id="email"
-          placeholder="ricardo24@gmail.com"
-          focusBorderColor="red.500"
-          borderRadius="40px"
-        />
-      </Stack>
+      <Formik initialValues={user} onSubmit={handleSubmit} enableReinitialize validateOnChange validateOnBlur>
+        {({ values, handleChange, isSubmitting, setSubmitting }) => (
+          <Form>
+            <Stack spacing={4} mb={6}>
+              <InputField
+                id="name"
+                name="name"
+                placeholder="Ricardo Dantas Silva"
+                focusBorderColor="red.500"
+                borderRadius="40px"
+                onChange={handleChange}
+                value={values.name}
+              />
+              <InputField
+                id="cpf"
+                name="cpf"
+                placeholder="148.587.658-55"
+                focusBorderColor="red.500"
+                borderRadius="40px"
+                onChange={handleChange}
+                value={values.cpf}
+              />
+              <InputField
+                id="phone"
+                name="phone"
+                placeholder="(83) 9 9876-1232"
+                focusBorderColor="red.500"
+                borderRadius="40px"
+                onChange={handleChange}
+                value={values.phone}
+              />
+              <InputField
+                id="email"
+                name="email"
+                placeholder="ricardo24@gmail.com"
+                focusBorderColor="red.500"
+                borderRadius="40px"
+                onChange={handleChange}
+                value={values.email}
+              />
+            </Stack>
 
-      {/* Formulário de Endereço */}
-      <Heading color= "#3E3E3E" as="h2" fontSize="18px" mb={4}>
-        Dados de Endereço
-      </Heading>
-      <Stack spacing={4} mb={6}>
-        <InputField
-          id="endereco-principal"
-          placeholder="Rua Airton Senna"
-          focusBorderColor="red.500"
-          borderRadius="40px"
-        />
-        <InputField
-          id="bairro"
-          placeholder="Jardim Soledade"
-          focusBorderColor="red.500"
-          borderRadius="40px"
-        />
-        <InputField
-          id="numero"
-          placeholder="54"
-          focusBorderColor="red.500"
-          borderRadius="40px"
-        />
-        <InputField
-          id="complemento"
-          placeholder="Casa"
-          focusBorderColor="red.500"
-          borderRadius="40px"
-        />
-        <InputField
-          id="cidade"
-          placeholder="Patos"
-          focusBorderColor="red.500"
-          borderRadius="40px"
-        />
-        <InputField
-          id="estado"
-          placeholder="Paraíba"
-          focusBorderColor="red.500"
-          borderRadius="40px"
-        />
-        <InputField
-          id="referencia"
-          placeholder="Próximo à igreja São João Bosco"
-          focusBorderColor="red.500"
-          borderRadius="40px"
-        />
-      </Stack>
+            {/* Formulário de Endereço */}
+            <Heading color="#3E3E3E" as="h2" fontSize="18px" mb={4}>
+              Dados de Endereço
+            </Heading>
+            <Stack spacing={4} mb={6}>
+              <InputField
+                id="street"
+                name="street"
+                placeholder="Rua Airton Senna"
+                focusBorderColor="red.500"
+                borderRadius="40px"
+                onChange={handleChange}
+                value={values.street}
+              />
+              <InputField
+                id="neighborhood"
+                name="neighborhood"
+                placeholder="Jardim Soledade"
+                focusBorderColor="red.500"
+                borderRadius="40px"
+                onChange={handleChange}
+                value={values.neighborhood}
+              />
+              <InputField
+                id="number"
+                name="number"
+                placeholder="54"
+                focusBorderColor="red.500"
+                borderRadius="40px"
+                onChange={handleChange}
+                value={values.number}
+              />
+              <InputField
+                id="complement"
+                name="complement"
+                placeholder="Casa"
+                focusBorderColor="red.500"
+                borderRadius="40px"
+                onChange={handleChange}
+                value={values.complement}
+              />
+              <InputField
+                id="city"
+                name="city"
+                placeholder="Patos"
+                focusBorderColor="red.500"
+                borderRadius="40px"
+                onChange={handleChange}
+                value={values.city}
+              />
+              <InputField
+                id="state"
+                name="state"
+                placeholder="Paraíba"
+                focusBorderColor="red.500"
+                borderRadius="40px"
+                onChange={handleChange}
+                value={values.state}
+              />
+              <InputField
+                id="reference"
+                name="reference"
+                placeholder="Próximo à igreja São João Bosco"
+                focusBorderColor="red.500"
+                borderRadius="40px"
+                onChange={handleChange}
+                value={values.reference}
+              />
+            </Stack>
 
-      {/* Botões de Ação */}
-      <Flex justifyContent="flex-end" mt={4}>
-        <Stack spacing={4}>
-          <ButtonSecundary
-            titulo="Adicionar novo endereço"
-            onClick={() => console.log("Adicionar endereço")}
-          />
-          <ActionButton
-            titulo="Salvar"
-            onClick={() => console.log("Salvar perfil")}
-            background="red.500"
-            color="white"
-          />
-        </Stack>
-      </Flex>
+            {/* Botões de Ação */}
+            <Flex justifyContent="flex-end" mt={4}>
+              <Stack spacing={4}>
+                <ActionButton
+                  titulo="Salvar"
+                  type="submit"
+                  isLoading={isSubmitting}
+                  background="red.500"
+                  color="white"
+                  onClick={() => {
+                    handleSubmit(values, setSubmitting);
+                  }}
+                />
+              </Stack>
+            </Flex>
+          </Form>
+        )}
+      </Formik>
     </Box>
   );
 };

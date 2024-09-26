@@ -16,11 +16,14 @@ import { IoLocation, IoPerson } from "react-icons/io5";
 import theme from "../../../styles/global";
 import useIsMobile from "../../../hooks/useIsMobile";
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useAuth } from "../../../context/AuthContext";
 
 const Header: React.FC = () => {
   const isMobile = useIsMobile();
   const navigate = useNavigate();
-  const location = useLocation(); 
+  const location = useLocation();
+  const { logout } = useAuth();
+  const username = localStorage.getItem("username");
 
   const isActive = (path: string) => location.pathname === path;
 
@@ -50,6 +53,9 @@ const Header: React.FC = () => {
                   <MenuList>
                     <MenuItem
                       icon={<Icon as={IoPerson} color={theme.colors.primary} />}
+                      onClick={() => {
+                        navigate('/perfil')
+                      }}
                     >
                       Perfil
                     </MenuItem>
@@ -83,8 +89,8 @@ const Header: React.FC = () => {
                       color: "white",
                       fontWeight: 500,
                       textDecoration: "none",
-                      borderBottom: isActive('/home') 
-                        ? `2px solid ${theme.colors.yellow}` 
+                      borderBottom: isActive("/home")
+                        ? `2px solid ${theme.colors.yellow}`
                         : "2px solid transparent",
                       transition: "border-color 0.3s ease",
                       "&:hover": {
@@ -93,7 +99,7 @@ const Header: React.FC = () => {
                       cursor: "pointer",
                     }}
                     onClick={() => {
-                      navigate('/home');
+                      navigate("/home");
                     }}
                   >
                     Home
@@ -105,8 +111,8 @@ const Header: React.FC = () => {
                       color: "white",
                       fontWeight: 500,
                       textDecoration: "none",
-                      borderBottom: isActive('/pedidos') 
-                        ? `2px solid ${theme.colors.yellow}` 
+                      borderBottom: isActive("/pedidos")
+                        ? `2px solid ${theme.colors.yellow}`
                         : "2px solid transparent",
                       transition: "border-color 0.3s ease",
                       "&:hover": {
@@ -115,7 +121,7 @@ const Header: React.FC = () => {
                       cursor: "pointer",
                     }}
                     onClick={() => {
-                      navigate('/pedidos');
+                      navigate("/pedidos");
                     }}
                   >
                     Pedidos
@@ -127,8 +133,8 @@ const Header: React.FC = () => {
                       color: "white",
                       fontWeight: 500,
                       textDecoration: "none",
-                      borderBottom: isActive('/favoritos') 
-                        ? `2px solid ${theme.colors.yellow}` 
+                      borderBottom: isActive("/favoritos")
+                        ? `2px solid ${theme.colors.yellow}`
                         : "2px solid transparent",
                       transition: "border-color 0.3s ease",
                       "&:hover": {
@@ -137,7 +143,7 @@ const Header: React.FC = () => {
                       cursor: "pointer",
                     }}
                     onClick={() => {
-                      navigate('/favoritos');
+                      navigate("/favoritos");
                     }}
                   >
                     Favoritos
@@ -149,8 +155,8 @@ const Header: React.FC = () => {
                       color: "white",
                       fontWeight: 500,
                       textDecoration: "none",
-                      borderBottom: isActive('/notificacoes') 
-                        ? `2px solid ${theme.colors.yellow}` 
+                      borderBottom: isActive("/notificacoes")
+                        ? `2px solid ${theme.colors.yellow}`
                         : "2px solid transparent",
                       transition: "border-color 0.3s ease",
                       "&:hover": {
@@ -159,7 +165,7 @@ const Header: React.FC = () => {
                       cursor: "pointer",
                     }}
                     onClick={() => {
-                      navigate('/notificacoes');
+                      navigate("/notificacoes");
                     }}
                   >
                     Notificações
@@ -193,10 +199,16 @@ const Header: React.FC = () => {
                         <Avatar style={{ width: "30px", height: "30px" }} />
                       </MenuButton>
                       <MenuList>
+                        <MenuItem>
+                          <Text>Olá, {username}!</Text>
+                        </MenuItem>
                         <MenuItem
                           icon={
                             <Icon as={IoPerson} color={theme.colors.primary} />
                           }
+                          onClick={() => {
+                            navigate('/perfil')
+                          }}
                         >
                           Perfil
                         </MenuItem>
@@ -204,7 +216,7 @@ const Header: React.FC = () => {
                           icon={
                             <Icon as={MdLogout} color={theme.colors.primary} />
                           }
-                          onClick={() => alert("Kagebunshin")}
+                          onClick={logout}
                         >
                           Sair
                         </MenuItem>
