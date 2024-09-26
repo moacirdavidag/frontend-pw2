@@ -1,33 +1,89 @@
 import React, { useState } from "react";
-import {
-  Box,
-  Tab,
-  TabList,
-  TabPanels,
-  TabPanel,
-  Tabs,
-  IconButton,
-} from "@chakra-ui/react";
+import { Box, Text, Stack, IconButton, useToast } from "@chakra-ui/react";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
-import ActionButton from "../Button/ActionButton";
-import TitleWithSubtitle from "../TitleWithSubtitle/TittleWithSub";
+import * as Yup from "yup";
 import { InputField } from "../InputField/InputField";
+import ActionButton from "../Button/ActionButton";
 import { Header } from "../Header/Header";
+import TitleWithSubtitle from "../TitleWithSubtitle/TittleWithSub";
+import { useNavigate } from "react-router-dom";
+import API from "../../services/api";
 
-const RegisterForm: React.FC = () => {
-  const [tabIndex, setTabIndex] = useState(0);
+const RegisterForm = () => {
   const [showPassword, setShowPassword] = useState(false);
-
-  const handleTabsChange = (index: number) => {
-    setTabIndex(index);
-  };
 
   const handleShowClick = () => {
     setShowPassword(!showPassword);
   };
 
+  const toast = useToast();
+  const navigate = useNavigate();
+
+  const initialValues = {
+    name: "",
+    email: "",
+    password: "",
+    repetirSenha: "",
+    street: "",
+    neighborhood: "",
+    number: "",
+    city: "",
+    state: "",
+  };
+
+  const validationSchema = Yup.object({
+    name: Yup.string().required("Nome é obrigatório"),
+    email: Yup.string().email("Email inválido").required("Email é obrigatório"),
+    password: Yup.string()
+      .min(6, "A senha deve ter pelo menos 6 caracteres")
+      .required("Senha é obrigatória"),
+    repetirSenha: Yup.string()
+      .oneOf([Yup.ref("password")], "As senhas não coincidem")
+      .required("Repita a senha"),
+    street: Yup.string().required("Rua é obrigatória"),
+    neighborhood: Yup.string().required("Bairro é obrigatório"),
+    number: Yup.string().required("Número é obrigatório"),
+    city: Yup.string().required("Cidade é obrigatória"),
+    state: Yup.string().required("Estado é obrigatório"),
+  });
+
+  const handleSubmit = async (
+    values: any,
+    { setSubmitting }: any
+  ) => {
+    const valuesEdited = values;
+    delete valuesEdited.repetirSenha;
+    try {
+      const response = await API.post("/users", valuesEdited);
+      if (response.status === 201) {
+        toast({
+          title: "Usuário criado com sucesso!",
+          description: "Você será redirecionado para a página inicial!",
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+          position: "top-right",
+        });
+        navigate("/home");
+      }
+    } catch (error) {
+      toast({
+        title: "Erro ao criar o usuário!",
+        description: "Tente novamente!",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+        position: "top-right",
+      });
+      console.error("Erro ao criar o usuário:", error);
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
   return (
-    <Box mt={2} mb={0}>
+    <Box p={4}>
       <Header logoSrc="src/assets/imgs/logo.png" />
       {/* Título e subtítulo */}
       <Box textAlign="left" mb={1}>
@@ -37,185 +93,228 @@ const RegisterForm: React.FC = () => {
           textAlign="left"
         />
       </Box>
-
-      <Tabs
-        index={tabIndex}
-        onChange={handleTabsChange}
-        isFitted
-        variant="unstyled"
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={handleSubmit}
       >
-        <TabList justifyContent="center" mb="1em">
-          <Tab
-            fontWeight="bold"
-            color={tabIndex === 0 ? "#3E3E3E" : "#3E3E3E"}
-            borderBottom={
-              tabIndex === 0 ? "2px solid red" : "2px solid #DCDCDC"
-            }
-          >
-            {tabIndex === 0 ? "Dados Pessoais" : ""}
-          </Tab>
-          <Tab
-            fontWeight="bold"
-            color={tabIndex === 1 ? "#3E3E3E" : "#3E3E3E"}
-            borderBottom={
-              tabIndex === 1 ? "2px solid red" : "2px solid #DCDCDC"
-            }
-            whiteSpace="nowrap"
-            overflow="hidden"
-            textOverflow="ellipsis"
-          >
-            {tabIndex === 1 ? "Dados de Endereço" : ""}
-          </Tab>
-        </TabList>
-
-        <TabPanels>
-          {/* Formulário de Dados Pessoais */}
-          <TabPanel>
-            <InputField
-              id="nome"
-              placeholder="Nome Completo"
-              focusBorderColor="red.500"
-              borderRadius="40px"
-              mb={4}
-            />
-            <InputField
-              id="cpf"
-              placeholder="CPF"
-              focusBorderColor="red.500"
-              borderRadius="40px"
-              mb={4}
-            />
-            <InputField
-              id="telefone"
-              placeholder="Telefone"
-              focusBorderColor="red.500"
-              borderRadius="40px"
-              mb={4}
-            />
-            <InputField
-              id="email"
-              placeholder="E-mail"
-              type="email"
-              focusBorderColor="red.500"
-              borderRadius="40px"
-              mb={4}
-            />
-            {/* Usando InputField para os campos de senha */}
-            <InputField
-              id="senha"
-              placeholder="Senha"
-              type={showPassword ? "text" : "password"}
-              focusBorderColor="red.500"
-              borderRadius="40px"
-              inputRightElement={
-                <IconButton
-                  variant="ghost"
-                  aria-label={showPassword ? "Ocultar senha" : "Mostrar senha"}
-                  icon={showPassword ? <ViewOffIcon /> : <ViewIcon />}
-                  onClick={handleShowClick}
-                  marginRight="0"
-                />
-              }
-              mb={4}
-            />
-            <InputField
-              id="repetir-senha"
-              placeholder="Repita sua senha"
-              type={showPassword ? "text" : "password"}
-              focusBorderColor="red.500"
-              borderRadius="40px"
-              inputRightElement={
-                <IconButton
-                  variant="ghost"
-                  aria-label={showPassword ? "Ocultar senha" : "Mostrar senha"}
-                  icon={showPassword ? <ViewOffIcon /> : <ViewIcon />}
-                  onClick={handleShowClick}
-                  marginRight="0"
-                />
-              }
-              mb={6}
-            />
-            <ActionButton
-              titulo="Próximo"
-              onClick={() => setTabIndex(1)} // Vai para o próximo formulário
-              background="red.500"
-            />
-          </TabPanel>
-
-          {/* Formulário de Dados de Endereço */}
-          <TabPanel>
-            <InputField
-              id="rua"
-              placeholder="Rua"
-              focusBorderColor="red.500"
-              borderRadius="40px"
-              mb={3}
-            />
-            <InputField
-              id="bairro"
-              placeholder="Bairro"
-              focusBorderColor="red.500"
-              borderRadius="40px"
-              mb={3}
-            />
-            <InputField
-              id="numero"
-              placeholder="Número"
-              focusBorderColor="red.500"
-              borderRadius="40px"
-              mb={3}
-            />
-            <InputField
-              id="complemento"
-              placeholder="Complemento"
-              focusBorderColor="red.500"
-              borderRadius="40px"
-              mb={3}
-            />
-            <InputField
-              id="cidade"
-              placeholder="Cidade"
-              focusBorderColor="red.500"
-              borderRadius="40px"
-              mb={3}
-            />
-            <InputField
-              id="estado"
-              placeholder="Estado"
-              focusBorderColor="red.500"
-              borderRadius="40px"
-              mb={3}
-            />
-            <InputField
-              id="referencia"
-              placeholder="Ponto de Referência"
-              focusBorderColor="red.500"
-              borderRadius="40px"
-              mb={6}
-            />
-
-            <Box display="flex" justifyContent="space-between" gap={4}>
-              <ActionButton
-                titulo="Voltar"
-                onClick={() => setTabIndex(0)} // Voltar ao formulário anterior
-                background="#FCFCFC"
-                color="#717171"
-                border="1px solid #DCDCDC"
-                hover={{ bg: "gray.400" }}
-                width="45%"
-                fontSize="14px"
+        {({ isSubmitting, handleChange, values, setSubmitting }) => (
+          <Form>
+            <Stack spacing={4}>
+              <Field
+                as={InputField}
+                id="nome"
+                name="name"
+                placeholder="Nome"
+                focusBorderColor="red.500"
+                borderRadius="40px"
+                mb={4}
+                onChange={handleChange}
+                value={values.name}
               />
-              <ActionButton
-                titulo="Finalizar"
-                onClick={() => alert("Cadastro finalizado!")} // Implementar a lógica do cadastro
-                background="red.500"
-                width="45%"
-                fontSize="14px"
+              <ErrorMessage name="name">
+                {(msg) => (
+                  <Text color="red.500" fontSize="sm">
+                    {msg}
+                  </Text>
+                )}
+              </ErrorMessage>
+
+              <Field
+                as={InputField}
+                id="email"
+                name="email"
+                placeholder="Email"
+                focusBorderColor="red.500"
+                borderRadius="40px"
+                mb={4}
+                onChange={handleChange}
+                value={values.email}
               />
-            </Box>
-          </TabPanel>
-        </TabPanels>
-      </Tabs>
+              <ErrorMessage name="email">
+                {(msg) => (
+                  <Text color="red.500" fontSize="sm">
+                    {msg}
+                  </Text>
+                )}
+              </ErrorMessage>
+
+              <Field
+                as={InputField}
+                id="senha"
+                name="password"
+                placeholder="Senha"
+                type={showPassword ? "text" : "password"}
+                focusBorderColor="red.500"
+                borderRadius="40px"
+                mb={4}
+                onChange={handleChange}
+                value={values.password}
+                inputRightElement={
+                  <IconButton
+                    variant="ghost"
+                    aria-label={
+                      showPassword ? "Ocultar senha" : "Mostrar senha"
+                    }
+                    icon={showPassword ? <ViewOffIcon /> : <ViewIcon />}
+                    onClick={handleShowClick}
+                    marginRight="0"
+                  />
+                }
+              />
+              <ErrorMessage name="password">
+                {(msg) => (
+                  <Text color="red.500" fontSize="sm">
+                    {msg}
+                  </Text>
+                )}
+              </ErrorMessage>
+
+              <Field
+                as={InputField}
+                id="repetirSenha"
+                name="repetirSenha"
+                placeholder="Repita a Senha"
+                type={showPassword ? "text" : "password"}
+                focusBorderColor="red.500"
+                borderRadius="40px"
+                mb={4}
+                onChange={handleChange}
+                value={values.repetirSenha}
+                inputRightElement={
+                  <IconButton
+                    variant="ghost"
+                    aria-label={
+                      showPassword ? "Ocultar senha" : "Mostrar senha"
+                    }
+                    icon={showPassword ? <ViewOffIcon /> : <ViewIcon />}
+                    onClick={handleShowClick}
+                    marginRight="0"
+                  />
+                }
+              />
+              <ErrorMessage name="repetirSenha">
+                {(msg) => (
+                  <Text color="red.500" fontSize="sm">
+                    {msg}
+                  </Text>
+                )}
+              </ErrorMessage>
+
+              <Field
+                as={InputField}
+                id="rua"
+                name="street"
+                placeholder="Rua"
+                focusBorderColor="red.500"
+                borderRadius="40px"
+                mb={4}
+                onChange={handleChange}
+                value={values.street}
+              />
+              <ErrorMessage name="street">
+                {(msg) => (
+                  <Text color="red.500" fontSize="sm">
+                    {msg}
+                  </Text>
+                )}
+              </ErrorMessage>
+
+              <Field
+                as={InputField}
+                id="bairro"
+                name="neighborhood"
+                placeholder="Bairro"
+                focusBorderColor="red.500"
+                borderRadius="40px"
+                mb={4}
+                onChange={handleChange}
+                value={values.neighborhood}
+              />
+              <ErrorMessage name="neighborhood">
+                {(msg) => (
+                  <Text color="red.500" fontSize="sm">
+                    {msg}
+                  </Text>
+                )}
+              </ErrorMessage>
+
+              <Field
+                as={InputField}
+                id="numero"
+                name="number"
+                placeholder="Número"
+                focusBorderColor="red.500"
+                borderRadius="40px"
+                mb={4}
+                onChange={handleChange}
+                value={values.number}
+              />
+              <ErrorMessage name="number">
+                {(msg) => (
+                  <Text color="red.500" fontSize="sm">
+                    {msg}
+                  </Text>
+                )}
+              </ErrorMessage>
+
+              <Field
+                as={InputField}
+                id="cidade"
+                name="city"
+                placeholder="Cidade"
+                focusBorderColor="red.500"
+                borderRadius="40px"
+                mb={4}
+                onChange={handleChange}
+                value={values.city}
+              />
+              <ErrorMessage name="city">
+                {(msg) => (
+                  <Text color="red.500" fontSize="sm">
+                    {msg}
+                  </Text>
+                )}
+              </ErrorMessage>
+
+              <Field
+                as={InputField}
+                id="estado"
+                name="state"
+                placeholder="Estado"
+                focusBorderColor="red.500"
+                borderRadius="40px"
+                mb={4}
+                onChange={handleChange}
+                value={values.state}
+              />
+              <ErrorMessage name="state">
+                {(msg) => (
+                  <Text color="red.500" fontSize="sm">
+                    {msg}
+                  </Text>
+                )}
+              </ErrorMessage>
+            </Stack>
+
+            <Stack spacing={3} mt={5}>
+              <ActionButton
+                type="submit"
+                isLoading={isSubmitting}
+                loadingText="Carregando..."
+                backgroundColor="red.500"
+                color="white"
+                borderRadius="50px"
+                _hover={{ bg: "red.600" }}
+                onClick={() => {
+                  handleSubmit(values, setSubmitting);
+                }}
+                titulo="Cadastrar"
+              />
+            </Stack>
+          </Form>
+        )}
+      </Formik>
     </Box>
   );
 };
