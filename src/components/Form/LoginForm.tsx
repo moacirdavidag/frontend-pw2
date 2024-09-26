@@ -45,10 +45,11 @@ const LoginForm: React.FC = () => {
         password: values.password,
       });
       if (response.status === 201) {
-        const {access_token, username, id} = response.data;
+        const {access_token, username, id, avatar_url} = response.data;
         login(access_token);
         localStorage.setItem('username', username);
         localStorage.setItem('id', id);
+        localStorage.setItem('avatarUrl', avatar_url);
         toast({
           title: "Login bem-sucedido!",
           description: "Você será redirecionado para a página inicial!",
