@@ -15,6 +15,9 @@ import NotificationsScreen from "./pages/Notifications/NotificationsScreen";
 import Pedidos from "./pages/Pedidos/Pedidos";
 import AuthRoute from "./components/AuthRoute/AuthRoute";
 import { AuthProvider } from "./context/AuthContext";
+import PedidosDashboard from "./pages/Dashboard/PedidosDashboard/PedidosDashboard";
+import AdminRoute from "./components/AdminRoute/AdminRoute";
+import ProdutoDashboard from "./pages/Dashboard/ProdutoDashboard/ProdutoDashboard";
 
 function App() {
   return (
@@ -35,10 +38,7 @@ function App() {
               path="/perfil"
               element={<AuthRoute element={<Perfil />} />}
             />
-            <Route
-              path="/dashboard"
-              element={<AuthRoute element={<Dashboard />} />}
-            />
+            
             <Route
               path="/produto/:id"
               element={<AuthRoute element={<DetalhesProduto />} />}
@@ -50,6 +50,23 @@ function App() {
             <Route
               path="/pedidos"
               element={<AuthRoute element={<Pedidos />} />}
+            />
+            <Route
+              path="/pedidos"
+              element={<AuthRoute element={<Pedidos />} />}
+            />
+            {/* Rotas de Admin */}
+            <Route
+              path="/dashboard"
+              element={<AdminRoute element={<Dashboard />} />}
+            />
+            <Route
+              path="/dashboard/pedidos"
+              element={<AdminRoute element={<Dashboard children={<PedidosDashboard />} />} />}
+            />
+            <Route
+              path="/dashboard/produtos"
+              element={<AdminRoute element={<Dashboard children={<ProdutoDashboard />} />} />}
             />
           </Routes>
         </Router>
