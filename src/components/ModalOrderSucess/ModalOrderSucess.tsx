@@ -11,17 +11,18 @@ import {
   Center,
   useBreakpointValue,
 } from "@chakra-ui/react";
-import { MdMarkEmailRead } from "react-icons/md";
 import ActionButton from "../Button/ActionButton";
 
 interface ModalOrderSuccessProps {
   isOpen: boolean;
   onClose: () => void;
+  orderId: string;
 }
 
 const ModalOrderSuccess: React.FC<ModalOrderSuccessProps> = ({
   isOpen,
   onClose,
+  orderId,
 }) => {
   const modalWidth = useBreakpointValue({ base: "100%", sm: "80%", md: "80%" });
   const modalHeight = useBreakpointValue({ base: "auto", md: "350px" });
@@ -32,7 +33,6 @@ const ModalOrderSuccess: React.FC<ModalOrderSuccessProps> = ({
       <ModalContent textAlign="center" p={8} w={modalWidth} h={modalHeight}>
         <Center>
           <Box
-            bg="#EA1D2C1A"
             w="80px"
             h="80px"
             borderRadius="50%"
@@ -40,21 +40,28 @@ const ModalOrderSuccess: React.FC<ModalOrderSuccessProps> = ({
             alignItems="center"
             justifyContent="center"
             mb={4}
-          >
-            <MdMarkEmailRead size="40px" color="#EA1D2C" />
-          </Box>
+          ></Box>
         </Center>
 
-        <ModalHeader>Pedido feito com sucesso!</ModalHeader>
+        <ModalHeader color="green.500">Pedido feito com sucesso!</ModalHeader>
         <ModalBody>
-          <Text mb={4} textAlign="center" noOfLines={3}>
-            Acompanhe seu pedido através do número fornecido.
+          <Text mb={2} fontSize="lg" textAlign="center" color="gray.500">
+            Acompanhe seu pedido
+          </Text>
+          <Text
+            mb={4}
+            fontSize="xl"
+            textAlign="center"
+            color="red.500"
+            fontWeight="bold"
+          >
+            Nº {orderId}
           </Text>
 
           <ActionButton
             titulo="Acompanhar pedido"
             onClick={onClose}
-            borderRadius="40px"
+            borderRadius="10px"
             alignItems="center"
             justifyContent="center"
             width="100%"

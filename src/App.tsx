@@ -15,6 +15,7 @@ import NotificationsScreen from "./pages/Notifications/NotificationsScreen";
 import Pedidos from "./pages/Pedidos/Pedidos";
 import AuthRoute from "./components/AuthRoute/AuthRoute";
 import { AuthProvider } from "./context/AuthContext";
+import PerfilNewAddressScreen from "./pages/Perfil/PerfilNewAddressScreen";
 
 function App() {
   return (
@@ -31,9 +32,15 @@ function App() {
             <Route path="/equipe" element={<Equipe />} />
             {/* Rotas privadas */}
             <Route path="/home" element={<AuthRoute element={<Home />} />} />
+
             <Route
               path="/perfil"
               element={<AuthRoute element={<Perfil />} />}
+            />
+
+            <Route
+              path="/perfil/novo-endereco"
+              element={<AuthRoute element={<PerfilNewAddressScreen />} />}
             />
             <Route
               path="/dashboard"
