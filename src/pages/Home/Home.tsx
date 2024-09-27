@@ -34,7 +34,7 @@ const Home: React.FC = () => {
             <PromotionBanner
               imagem="/img/delivery_man.png"
               textoAltImagem="Imagem de uma Pizza"
-              textoPromocao="Pizzas com 20% de Desconto!"
+              textoPromocao="Entrega Grátis em todo site!"
               textoSecundario="Oferta por tempo ilimitado, então, aproveite agora!"
               textoBotao="PEÇA AGORA"
               backgroundBanner={theme.colors.primary}
