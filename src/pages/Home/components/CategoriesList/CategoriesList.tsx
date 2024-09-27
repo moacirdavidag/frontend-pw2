@@ -12,18 +12,58 @@ const CATEGORIES = [
     titulo: "Lanches",
     isActive: true,
     imagem: "/img/hamburguer.png",
-    descricao:
-      "Delicioso hambúrguer para toda a família em promoção. É só essa semana!",
+    descricao: "Deliciosos hambúrgueres para toda a família em promoção!",
     preco: 24.99,
   },
   {
     id: 1,
-    titulo: "Pizzarias",
+    titulo: "Pizza",
     isActive: false,
-    imagem: "/img/hamburguer.png",
-    descricao:
-      "Delicioso hambúrguer para toda a família em promoção. É só essa semana!",
+    imagem: "/img/pizza.png",
+    descricao: "Deliciosas Pizzas para toda família!",
     preco: 24.99,
+  },
+  {
+    id: 1,
+    titulo: "Açai",
+    isActive: false,
+    imagem: "/img/Acai.png",
+    descricao:
+      "Delicioso Açai para toda a família em promoção. É só essa semana!",
+    preco: 13.99,
+  },
+  {
+    id: 1,
+    titulo: "Doces",
+    isActive: false,
+    imagem: "/img/Cupcake.png",
+    descricao:
+      "Deliciosos Doces para toda a família em promoção. É só essa semana!",
+    preco: 6.99,
+  },
+  {
+    id: 1,
+    titulo: "Sorvete",
+    isActive: false,
+    imagem: "/img/Icecream.png",
+    descricao: "Deliciosa Sorvetes e Gelados para toda a família!",
+    preco: 9.99,
+  },
+  {
+    id: 1,
+    titulo: "Sushi",
+    isActive: false,
+    imagem: "/img/Sushi.png",
+    descricao: "Deliciosos Sushi para toda a família em promoção!",
+    preco: 29.99,
+  },
+  {
+    id: 1,
+    titulo: "Bebidas",
+    isActive: false,
+    imagem: "/img/Liquor.png",
+    descricao: "Bebidas Geladinhas!",
+    preco: 14.99,
   },
 ];
 
