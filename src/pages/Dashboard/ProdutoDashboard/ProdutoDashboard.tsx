@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   HStack,
   Icon,
   Table,
@@ -15,6 +16,7 @@ import { PiHamburgerBold, PiPencilBold, PiTrashBold } from "react-icons/pi";
 import ActionButton from "../../../components/Button/ActionButton";
 import { useNavigate } from "react-router-dom";
 import API from "../../../services/api";
+import theme from "../../../styles/global";
 
 const pedidosIniciais = [
   { id: "2568-55", nome: "Baconzudo Cheddar", preco: "R$ 24,99" },
@@ -81,6 +83,12 @@ const ProdutoDashboard = () => {
         <Text fontSize="2xl" fontWeight="bold" color="#EA1D2C">
           Produtos
         </Text>
+        <Button background={theme.colors.primary} color="white"
+        onClick={() => {
+          navigate('/dashboard/produtos/criar');
+        }}>
+          Criar produto
+        </Button>
       </HStack>
 
       <Table variant="simple" size="md" bg="#FFFFFF" borderRadius="14px">
@@ -105,12 +113,8 @@ const ProdutoDashboard = () => {
                   currency: "BRL",
                 })}
               </Td>
-              <Td>
-                {produto?.descricao}
-              </Td>
-              <Td>
-                {produto?.categoria?.descricao}
-              </Td>
+              <Td>{produto?.descricao}</Td>
+              <Td>{produto?.categoria?.descricao}</Td>
               <Td>
                 <HStack gap={4}>
                   <Box
@@ -135,7 +139,9 @@ const ProdutoDashboard = () => {
                       background="#FDB600"
                       color="white"
                       hover={{ bg: "yellow.600" }}
-                      onClick={() => editarProduto(produto.id)}
+                      onClick={() => {
+                        navigate(`/dashboard/produtos/editar/${produto.id}`);
+                      }}
                     />
                   </Box>
 
