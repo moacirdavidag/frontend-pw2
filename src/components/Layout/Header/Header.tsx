@@ -203,7 +203,7 @@ const Header: React.FC = () => {
                       color: "white",
                       fontWeight: 500,
                       textDecoration: "none",
-                      borderBottom: isActive("/favoritos")
+                      borderBottom: isActive("/dashboard")
                         ? `2px solid ${theme.colors.yellow}`
                         : "2px solid transparent",
                       transition: "border-color 0.3s ease",
@@ -213,10 +213,10 @@ const Header: React.FC = () => {
                       cursor: "pointer",
                     }}
                     onClick={() => {
-                      navigate("/favoritos");
+                      navigate("/dashboard");
                     }}
                   >
-                    Favoritos
+                    Dashboard
                   </Text>
                 </Box>
                 <Box>
@@ -304,7 +304,7 @@ const Header: React.FC = () => {
                       navigate("/contato");
                     }}
                   >
-                    Notificações
+                    Contato
                   </Text>
                 </Box>
               </Stack>
