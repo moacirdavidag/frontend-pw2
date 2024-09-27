@@ -4,7 +4,7 @@ import breakpoints from "../../../utils/breakpoints";
 
 export const HeaderWrapper = styled.header`
   width: 100vw;
-  max-width: 100%;
+  max-width: 100vw;
   background-color: ${theme.colors.primary};
   min-height: 20px;
   display: flex;
