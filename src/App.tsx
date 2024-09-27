@@ -39,7 +39,7 @@ function App() {
               path="/perfil"
               element={<AuthRoute element={<Perfil />} />}
             />
-            
+
             <Route
               path="/produto/:id"
               element={<AuthRoute element={<DetalhesProduto />} />}
@@ -63,19 +63,35 @@ function App() {
             />
             <Route
               path="/dashboard/pedidos"
-              element={<AdminRoute element={<Dashboard children={<PedidosDashboard />} />} />}
+              element={
+                <AdminRoute
+                  element={<Dashboard children={<PedidosDashboard />} />}
+                />
+              }
             />
             <Route
               path="/dashboard/produtos"
-              element={<AdminRoute element={<Dashboard children={<ProdutoDashboard />} />} />}
+              element={
+                <AdminRoute
+                  element={<Dashboard children={<ProdutoDashboard />} />}
+                />
+              }
             />
             <Route
               path="/dashboard/produtos/criar"
-              element={<AdminRoute element={<Dashboard children={<ProdutoDashboardForm />} />} />}
+              element={
+                <AdminRoute
+                  element={<Dashboard children={<ProdutoDashboardForm />} />}
+                />
+              }
             />
             <Route
               path="/dashboard/produtos/editar/:id"
-              element={<AdminRoute element={<Dashboard children={<ProdutoDashboardForm />} />} />}
+              element={
+                <AdminRoute
+                  element={<Dashboard children={<ProdutoDashboardForm />} />}
+                />
+              }
             />
           </Routes>
         </Router>
