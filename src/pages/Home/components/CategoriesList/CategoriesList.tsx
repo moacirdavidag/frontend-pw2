@@ -176,8 +176,8 @@ const CategoriesList: React.FC = () => {
         <Stack width={"100vw"} my={3} px={5}>
           <PromotionBanner
             imagem="/img/delivery_man.png"
-            textoAltImagem="Imagem de uma Pizza"
-            textoPromocao="Pizzas com 20% de Desconto!"
+            textoAltImagem="Imagem de um Entregador"
+            textoPromocao="Entrega Grátis em todo site!"
             textoSecundario="Oferta por tempo ilimitado, então, aproveite agora!"
             textoBotao="PEÇA AGORA"
             backgroundBanner={theme.colors.primary}
